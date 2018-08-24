@@ -10,5 +10,5 @@ setup(
     author = 'Christoforou Manolis',
     author_email = 'emchristoforou@gmail.com',
     install_requires=['requests'],
-    #url = 'https://github.com/man-c/',
+    url = 'https://github.com/man-c/pycoingecko',
     )
