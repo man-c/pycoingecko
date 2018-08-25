@@ -1,6 +1,6 @@
 # CoinGecko API wrapper
 
-Python wrapper around the [CoinGecko](https://www.coingecko.com/) API
+Python wrapper around the [CoinGecko](https://www.coingecko.com/) API (V3)
 
 ### Installation
 ```
