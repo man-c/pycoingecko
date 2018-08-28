@@ -1,0 +1,12 @@
+[
+  "tests/test_api.py::TestWrapper::test_failed_get_coin_by_id",
+  "tests/test_api.py::TestWrapper::test_failed_get_coins",
+  "tests/test_api.py::TestWrapper::test_failed_get_coins_list",
+  "tests/test_api.py::TestWrapper::test_failed_get_coins_markets",
+  "tests/test_api.py::TestWrapper::test_failed_ping",
+  "tests/test_api.py::TestWrapper::test_get_coin_by_id",
+  "tests/test_api.py::TestWrapper::test_get_coins",
+  "tests/test_api.py::TestWrapper::test_get_coins_list",
+  "tests/test_api.py::TestWrapper::test_get_coins_markets",
+  "tests/test_api.py::TestWrapper::test_ping"
+]

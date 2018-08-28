@@ -43,9 +43,9 @@ class CoinGeckoAPI:
         """List all coins with data (name, price, market, developer, community, etc)"""
 
         api_url = '{0}coins'.format(self.api_base_url)
-        #['order', 'per_page', 'page', 'localization']
+        #['order', 'per_page', 'page', 'localization'] 
         api_url = self.__api_url_params(api_url, kwargs)
-
+        
         return self.__request(api_url)
 
 
@@ -70,7 +70,7 @@ class CoinGeckoAPI:
 
     def get_coin_by_id(self, id, **kwargs):
         """Get current data (name, price, market, ... including exchange tickers) for a coin"""
-
+        
         api_url = '{0}coins/{1}/'.format(self.api_base_url, id)
         api_url = self.__api_url_params(api_url, kwargs)
 
@@ -79,9 +79,9 @@ class CoinGeckoAPI:
 
     def get_coin_history_by_id(self, id, date, **kwargs):
         """Get historical data (name, price, market, stats) at a given date for a coin"""
-
-        kwargs['date'] = date
-
+        
+        kwargs['date'] = date 
+        
         api_url = '{0}coins/{1}/history'.format(self.api_base_url, id)
         api_url = self.__api_url_params(api_url, kwargs)
 
@@ -129,3 +129,4 @@ class CoinGeckoAPI:
         api_url = '{0}global'.format(self.api_base_url)
 
         return self.__request(api_url)['data']
+
