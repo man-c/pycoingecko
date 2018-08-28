@@ -9,6 +9,6 @@ setup(
     long_description=open('README.md').read(),
     author = 'Christoforou Manolis',
     author_email = 'emchristoforou@gmail.com',
-    install_requires=['requests'],
+    install_requires=['requests', 'pytest', 'responses'],
     url = 'https://github.com/man-c/pycoingecko',
     )

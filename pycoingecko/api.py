@@ -100,7 +100,7 @@ class CoinGeckoAPI:
     def get_exchanges_list(self):
         """List all exchanges"""
 
-        api_url = '{0}exchanges/list'.format(self.api_base_url)
+        api_url = '{0}exchanges'.format(self.api_base_url)
 
         return self.__request(api_url)
 
