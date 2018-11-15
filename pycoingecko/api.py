@@ -1,6 +1,9 @@
 import json
 import requests
 
+from requests.adapters import HTTPAdapter
+from requests.packages.urllib3.util.retry import Retry
+
 class CoinGeckoAPI:
 
     __API_URL_BASE = 'https://api.coingecko.com/api/v3/'
@@ -9,11 +12,15 @@ class CoinGeckoAPI:
         self.api_base_url = api_base_url
         self.request_timeout = 120
 
+        self.session = requests.Session()
+        retries = Retry(total=5, backoff_factor=0.5, status_forcelist=[ 502, 503, 504 ])
+        self.session.mount('http://', HTTPAdapter(max_retries=retries))
+
 
     def __request(self, url):
         #print(url)
         try:
-            response = requests.get(url, timeout = self.request_timeout)
+            response = self.session.get(url, timeout = self.request_timeout)
             response.raise_for_status()
             content = json.loads(response.content.decode('utf-8'))
             return content
