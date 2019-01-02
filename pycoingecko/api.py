@@ -127,6 +127,23 @@ class CoinGeckoAPI:
         return self.__request(api_url)
 
 
+    def get_coin_status_updates_by_id(self, id, **kwargs):
+        """Get status updates for a given coin"""
+
+        api_url = '{0}coins/{1}/status_updates'.format(self.api_base_url, id)
+        api_url = self.__api_url_params(api_url, kwargs)
+
+        return self.__request(api_url)
+
+
+    def get_coin_info_from_contract_address_by_id(self, id, contract_address):
+        """Get coin info from contract address"""
+
+        api_url = '{0}coins/{1}/contract/{2}'.format(self.api_base_url, id, contract_address)
+
+        return self.__request(api_url)
+
+
     #---------- EXCHANGES ----------#
     def get_exchanges_list(self):
         """List all exchanges"""
