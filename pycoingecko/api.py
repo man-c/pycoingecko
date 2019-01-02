@@ -45,6 +45,30 @@ class CoinGeckoAPI:
         return self.__request(api_url)
 
 
+    #---------- SIMPLE ----------#
+    def get_price(self, ids, vs_currencies, **kwargs):
+        """Get the current price of any cryptocurrencies in any other supported currencies that you need"""
+
+        # remove empty spaces (when querying more than 1 coin, comma-separated,
+        # spaces may exist between coins ie ids='bitcoin, litecoin' -> ids='bitcoin,litecoin')
+        ids=ids.replace(' ','')
+        kwargs['ids'] = ids
+        vs_currencies=vs_currencies.replace(' ','')
+        kwargs['vs_currencies'] = vs_currencies
+
+        api_url = '{0}simple/price'.format(self.api_base_url)
+        api_url = self.__api_url_params(api_url, kwargs)
+
+        return self.__request(api_url)
+
+
+    def get_supported_vs_currencies(self):
+        """Get list of supported_vs_currencies"""
+
+        api_url = '{0}simple/supported_vs_currencies'.format(self.api_base_url)
+        return self.__request(api_url)
+
+
     #---------- COINS ----------#
     def get_coins(self, **kwargs):
         """List all coins with data (name, price, market, developer, community, etc)"""
