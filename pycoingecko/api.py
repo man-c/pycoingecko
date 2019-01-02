@@ -161,6 +161,24 @@ class CoinGeckoAPI:
         return self.__request(api_url)
 
 
+    def get_exchanges_tickers_by_id(self, id, **kwargs):
+        """Get exchange tickers (paginated)"""
+
+        api_url = '{0}exchanges/{1}/tickers'.format(self.api_base_url, id)
+        api_url = self.__api_url_params(api_url, kwargs)
+
+        return self.__request(api_url)
+
+
+    def get_exchanges_status_updates_by_id(self, id, **kwargs):
+        """Get status updates for a given exchange"""
+
+        api_url = '{0}exchanges/{1}/status_updates'.format(self.api_base_url, id)
+        api_url = self.__api_url_params(api_url, kwargs)
+
+        return self.__request(api_url)
+
+
     #---------- EXCHANGE-RATES ----------#
     def get_exchange_rates(self):
         """Get BTC-to-Currency exchange rates"""
