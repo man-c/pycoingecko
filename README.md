@@ -22,3 +22,6 @@ pytest tests
 from pycoingecko import CoinGeckoAPI
 cg = CoinGeckoAPI()
 ```
+
+### API documentation
+https://www.coingecko.com/api/docs/v3
