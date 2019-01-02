@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup(
     name='pycoingecko',
-    version='0.0.2',
+    version='0.1.0',
     packages=['pycoingecko',],
     license='MIT',
     description = 'Python wrapper around the CoinGecko API.',
