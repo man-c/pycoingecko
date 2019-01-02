@@ -108,6 +108,15 @@ class CoinGeckoAPI:
         return self.__request(api_url)
 
 
+    def get_coin_ticker_by_id(self, id, **kwargs):
+        """Get coin tickers (paginated to 100 items)"""
+
+        api_url = '{0}coins/{1}/tickers'.format(self.api_base_url, id)
+        api_url = self.__api_url_params(api_url, kwargs)
+
+        return self.__request(api_url)
+
+
     def get_coin_history_by_id(self, id, date, **kwargs):
         """Get historical data (name, price, market, stats) at a given date for a coin"""
 
