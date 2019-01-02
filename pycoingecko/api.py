@@ -179,6 +179,16 @@ class CoinGeckoAPI:
         return self.__request(api_url)
 
 
+    #---------- STATUS UPDATES ----------#
+    def get_status_updates(self, **kwargs):
+        """List all status_updates with data (description, category, created_at, user, user_title and pin)"""
+
+        api_url = '{0}status_updates'.format(self.api_base_url)
+        api_url = self.__api_url_params(api_url, kwargs)
+
+        return self.__request(api_url)
+
+
     #---------- EXCHANGE-RATES ----------#
     def get_exchange_rates(self):
         """Get BTC-to-Currency exchange rates"""
