@@ -189,6 +189,32 @@ class CoinGeckoAPI:
         return self.__request(api_url)
 
 
+    #---------- EVENTS ----------#
+    def get_events(self, **kwargs):
+        """Get events, paginated by 100"""
+
+        api_url = '{0}events'.format(self.api_base_url)
+        api_url = self.__api_url_params(api_url, kwargs)
+
+        return self.__request(api_url)
+
+
+    def get_events_countries(self):
+        """Get list of event countries"""
+
+        api_url = '{0}events/countries'.format(self.api_base_url)
+
+        return self.__request(api_url)
+
+
+    def get_events_types(self):
+        """Get list of event types"""
+
+        api_url = '{0}events/types'.format(self.api_base_url)
+
+        return self.__request(api_url)
+
+
     #---------- EXCHANGE-RATES ----------#
     def get_exchange_rates(self):
         """Get BTC-to-Currency exchange rates"""
