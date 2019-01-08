@@ -1,6 +1,9 @@
 import json
 import requests
 
+from requests.adapters import HTTPAdapter
+from requests.packages.urllib3.util.retry import Retry
+
 class CoinGeckoAPI:
 
     __API_URL_BASE = 'https://api.coingecko.com/api/v3/'
@@ -9,11 +12,15 @@ class CoinGeckoAPI:
         self.api_base_url = api_base_url
         self.request_timeout = 120
 
+        self.session = requests.Session()
+        retries = Retry(total=5, backoff_factor=0.5, status_forcelist=[ 502, 503, 504 ])
+        self.session.mount('http://', HTTPAdapter(max_retries=retries))
+
 
     def __request(self, url):
         #print(url)
         try:
-            response = requests.get(url, timeout = self.request_timeout)
+            response = self.session.get(url, timeout = self.request_timeout)
             response.raise_for_status()
             content = json.loads(response.content.decode('utf-8'))
             return content
@@ -35,6 +42,30 @@ class CoinGeckoAPI:
         """Check API server status"""
 
         api_url = '{0}ping'.format(self.api_base_url)
+        return self.__request(api_url)
+
+
+    #---------- SIMPLE ----------#
+    def get_price(self, ids, vs_currencies, **kwargs):
+        """Get the current price of any cryptocurrencies in any other supported currencies that you need"""
+
+        # remove empty spaces (when querying more than 1 coin, comma-separated,
+        # spaces may exist between coins ie ids='bitcoin, litecoin' -> ids='bitcoin,litecoin')
+        ids=ids.replace(' ','')
+        kwargs['ids'] = ids
+        vs_currencies=vs_currencies.replace(' ','')
+        kwargs['vs_currencies'] = vs_currencies
+
+        api_url = '{0}simple/price'.format(self.api_base_url)
+        api_url = self.__api_url_params(api_url, kwargs)
+
+        return self.__request(api_url)
+
+
+    def get_supported_vs_currencies(self):
+        """Get list of supported_vs_currencies"""
+
+        api_url = '{0}simple/supported_vs_currencies'.format(self.api_base_url)
         return self.__request(api_url)
 
 
@@ -77,6 +108,15 @@ class CoinGeckoAPI:
         return self.__request(api_url)
 
 
+    def get_coin_ticker_by_id(self, id, **kwargs):
+        """Get coin tickers (paginated to 100 items)"""
+
+        api_url = '{0}coins/{1}/tickers'.format(self.api_base_url, id)
+        api_url = self.__api_url_params(api_url, kwargs)
+
+        return self.__request(api_url)
+
+
     def get_coin_history_by_id(self, id, date, **kwargs):
         """Get historical data (name, price, market, stats) at a given date for a coin"""
 
@@ -96,6 +136,23 @@ class CoinGeckoAPI:
         return self.__request(api_url)
 
 
+    def get_coin_status_updates_by_id(self, id, **kwargs):
+        """Get status updates for a given coin"""
+
+        api_url = '{0}coins/{1}/status_updates'.format(self.api_base_url, id)
+        api_url = self.__api_url_params(api_url, kwargs)
+
+        return self.__request(api_url)
+
+
+    def get_coin_info_from_contract_address_by_id(self, id, contract_address):
+        """Get coin info from contract address"""
+
+        api_url = '{0}coins/{1}/contract/{2}'.format(self.api_base_url, id, contract_address)
+
+        return self.__request(api_url)
+
+
     #---------- EXCHANGES ----------#
     def get_exchanges_list(self):
         """List all exchanges"""
@@ -109,6 +166,60 @@ class CoinGeckoAPI:
         """Get exchange volume in BTC and tickers"""
 
         api_url = '{0}exchanges/{1}'.format(self.api_base_url, id)
+
+        return self.__request(api_url)
+
+
+    def get_exchanges_tickers_by_id(self, id, **kwargs):
+        """Get exchange tickers (paginated)"""
+
+        api_url = '{0}exchanges/{1}/tickers'.format(self.api_base_url, id)
+        api_url = self.__api_url_params(api_url, kwargs)
+
+        return self.__request(api_url)
+
+
+    def get_exchanges_status_updates_by_id(self, id, **kwargs):
+        """Get status updates for a given exchange"""
+
+        api_url = '{0}exchanges/{1}/status_updates'.format(self.api_base_url, id)
+        api_url = self.__api_url_params(api_url, kwargs)
+
+        return self.__request(api_url)
+
+
+    #---------- STATUS UPDATES ----------#
+    def get_status_updates(self, **kwargs):
+        """List all status_updates with data (description, category, created_at, user, user_title and pin)"""
+
+        api_url = '{0}status_updates'.format(self.api_base_url)
+        api_url = self.__api_url_params(api_url, kwargs)
+
+        return self.__request(api_url)
+
+
+    #---------- EVENTS ----------#
+    def get_events(self, **kwargs):
+        """Get events, paginated by 100"""
+
+        api_url = '{0}events'.format(self.api_base_url)
+        api_url = self.__api_url_params(api_url, kwargs)
+
+        return self.__request(api_url)
+
+
+    def get_events_countries(self):
+        """Get list of event countries"""
+
+        api_url = '{0}events/countries'.format(self.api_base_url)
+
+        return self.__request(api_url)
+
+
+    def get_events_types(self):
+        """Get list of event types"""
+
+        api_url = '{0}events/types'.format(self.api_base_url)
 
         return self.__request(api_url)
 
