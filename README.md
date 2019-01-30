@@ -9,21 +9,14 @@ pip install pycoingecko
 ```
 or from source
 ```
+git clone https://github.com/man-c/pycoingecko.git
+cd pycoingecko
 python3 setup.py install
-```
-
-### Test
-
-Run unit tests with:
-
-```
-# after installing pytest using pip3
-pytest tests
 ```
 
 ### Usage
 
-```
+```python
 from pycoingecko import CoinGeckoAPI
 cg = CoinGeckoAPI()
 ```
@@ -48,6 +41,7 @@ https://www.coingecko.com/api/docs/v3
   - /coins/{id}/contract/{contract_address} (Get coin info from contract address)
 - exchanges (beta)
   - /exchanges (List all exchanges)
+  - /exchanges/list (List all supported markets id and name (no pagination required))
   - /exchanges/{id} (Get exchange volume in BTC and top 100 tickers only)
   - /exchanges/{id}/tickers (Get exchange tickers (paginated))
   - /exchanges/{id}/status_updates (Get status updates for a given exchange (beta))
@@ -61,3 +55,15 @@ https://www.coingecko.com/api/docs/v3
   - /exchange_rates (Get BTC-to-Currency exchange rates)
 - global
   - /global (Get cryptocurrency global data)
+
+### Test
+
+Run unit tests with:
+
+```
+# after installing pytest using pip3
+pytest tests
+```
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
