@@ -3,15 +3,15 @@ import setuptools
 
 setuptools.setup(
     name='pycoingecko',
-    version='0.1.4',
+    version='0.1.5',
     packages=['pycoingecko',],
     license='MIT',
     description = 'Python wrapper around the CoinGecko API',
-    long_description=open('long_description.md').read(),
+    long_description=open('README.md').read(),
     long_description_content_type="text/markdown",
     author = 'Christoforou Manolis',
     author_email = 'emchristoforou@gmail.com',
-    install_requires=['requests', 'pytest', 'responses'],
+    install_requires=['requests'],
     url = 'https://github.com/man-c/pycoingecko',
     classifiers=[
         "Programming Language :: Python :: 3",
