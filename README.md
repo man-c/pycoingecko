@@ -4,7 +4,7 @@ Python3 wrapper around the [CoinGecko](https://www.coingecko.com/) API (V3)
 
 ### Installation
 PyPI
-```
+```bash
 pip install pycoingecko
 ```
 or from source
@@ -62,86 +62,86 @@ https://www.coingecko.com/api/docs/v3
     ```
 - coins
   - /coins/list (List all supported coins id, name and symbol (no pagination required))
-  ```python 
+    ```python 
     cg.get_coins_list()
     ```
   - /coins/markets (List all supported coins price, market cap, volume, and market related data (no pagination required))
-  ```python 
+    ```python 
     cg.get_coins_markets()
     ```
   - /coins/{id} (Get current data (name, price, market, ... including exchange tickers) for a coin)
-  ```python 
+    ```python 
     cg.get_coin_by_id()
     ```
   - /coins/{id}/tickers (Get coin tickers (paginated to 100 items))
-  ```python 
+    ```python 
     cg.get_coin_ticker_by_id()
     ```
   - /coins/{id}/history (Get historical data (name, price, market, stats) at a given date for a coin)
-  ```python 
+    ```python 
     cg.get_coin_history_by_id()
     ```
   - /coins/{id}/market_chart (Get historical market data include price, market cap, and 24h volume (granularity auto))
-  ```python 
+    ```python 
     cg.get_coin_market_chart_by_id()
     ```
   - /coins/{id}/status_updates (Get status updates for a given coin (beta))
-  ```python 
+    ```python 
     cg.get_coin_status_updates_by_id()
     ```
   - /coins/{id}/contract/{contract_address} (Get coin info from contract address)
-  ```python 
+    ```python 
     cg.get_coin_info_from_contract_address_by_id()
     ```
 - exchanges (beta)
   - /exchanges (List all exchanges)
-  ```python
-  cg.get_exchanges_list()
-  ```
+    ```python
+    cg.get_exchanges_list()
+    ```
   - /exchanges/list (List all supported markets id and name (no pagination required))
-  ```python
-  cg.get_exchanges_id_name_list()
-  ```
+    ```python
+    cg.get_exchanges_id_name_list()
+    ```
   - /exchanges/{id} (Get exchange volume in BTC and top 100 tickers only)
-  ```python
-  cg.get_exchanges_by_id()
-  ```
+    ```python
+    cg.get_exchanges_by_id()
+    ```
   - /exchanges/{id}/tickers (Get exchange tickers (paginated))
-  ```python
-  cg.get_exchanges_tickers_by_id()
-  ```
+    ```python
+    cg.get_exchanges_tickers_by_id()
+    ```
   - /exchanges/{id}/status_updates (Get status updates for a given exchange (beta))
-  ```python
-  cg.get_exchanges_status_updates_by_id()
-  ```
+    ```python
+    cg.get_exchanges_status_updates_by_id()
+    ```
 - status_updates (beta)
   - /status_updates (List all status_updates with data (description, category, created_at, user, user_title and pin))
-  ```python
-  cg.get_status_updates()
-  ```
+    ```python
+    cg.get_status_updates()
+    ```
 - events
   - /events (Get events, paginated by 100)
-  ```python
-  cg.get_events()
-  ```
+    ```python
+    cg.get_events()
+    ```
   - /events/countries (Get list of event countries)
-  ```python
-  cg.get_events_countries()
-  ```
+    ```python
+    cg.get_events_countries()
+    ```
   - /events/types (Get list of events types)
-  ```python
-  cg.get_events_types()
-  ```
+    ```python
+    cg.get_events_types()
+    ```
 - exchange_rates
   - /exchange_rates (Get BTC-to-Currency exchange rates)
-  ```python
-  cg.get_exchange_rates()
-  ```
+    ```python
+    cg.get_exchange_rates()
+    ```
 - global
   - /global (Get cryptocurrency global data)
-  ```python
-  cg.get_global()
-  ```
+    ```python
+    cg.get_global()
+    ```
 
 ### Test
 
