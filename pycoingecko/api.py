@@ -162,6 +162,14 @@ class CoinGeckoAPI:
         return self.__request(api_url)
 
 
+    def get_exchanges_id_name_list(self):
+        """List all supported markets id and name (no pagination required)"""
+
+        api_url = '{0}exchanges/list'.format(self.api_base_url)
+
+        return self.__request(api_url)
+
+
     def get_exchanges_by_id(self, id):
         """Get exchange volume in BTC and tickers"""
 
