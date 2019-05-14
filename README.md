@@ -56,6 +56,10 @@ https://www.coingecko.com/api/docs/v3
     ```python 
     cg.get_price()
     ```
+  - /simple/token_price/{id} (Get current price of tokens (using contract addresses) for a given platform in any other currency that you need)
+    ```python 
+    cg.get_token_price()
+    ```  
   - /simple/supported_vs_currencies (Get list of supported_vs_currencies)
     ```python 
     cg.get_supported_vs_currencies()
