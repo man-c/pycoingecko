@@ -71,8 +71,8 @@ class CoinGeckoAPI:
         vs_currencies=vs_currencies.replace(' ','')
         kwargs['vs_currencies'] = vs_currencies
 
-        api_url = '{0}simple/token_price/{1}?contract_addresses={2}&vs_currencies={3}'.format(self.api_base_url, id, contract_addresses, vs_currencies)
-
+        api_url = '{0}simple/token_price/{1}'.format(self.api_base_url, id)
+        api_url = self.__api_url_params(api_url, kwargs)
         return self.__request(api_url)
 
 
