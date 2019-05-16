@@ -61,6 +61,20 @@ class CoinGeckoAPI:
 
         return self.__request(api_url)
 
+    def get_token_price(self, id, contract_addresses, vs_currencies, **kwargs):
+        """Get the current price of any tokens on this coin (ETH only at this stage as per api docs) in any other supported currencies that you need"""
+
+        # remove empty spaces (when querying more than 1 contact_address/currency, comma-separated,
+        # spaces may exist between addresses/currencies ie vs_currencies='eur, usd' -> ids='eur,usd')
+        contract_addresses=contract_addresses.replace(' ','')
+        kwargs['contract_addresses'] = contract_addresses
+        vs_currencies=vs_currencies.replace(' ','')
+        kwargs['vs_currencies'] = vs_currencies
+
+        api_url = '{0}simple/token_price/{1}'.format(self.api_base_url, id)
+        api_url = self.__api_url_params(api_url, kwargs)
+        return self.__request(api_url)
+
 
     def get_supported_vs_currencies(self):
         """Get list of supported_vs_currencies"""
