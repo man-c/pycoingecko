@@ -4,6 +4,9 @@ import requests
 from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.util.retry import Retry
 
+from .utils import get_comma_separated_values
+
+
 class CoinGeckoAPI:
 
     __API_URL_BASE = 'https://api.coingecko.com/api/v3/'
@@ -49,12 +52,8 @@ class CoinGeckoAPI:
     def get_price(self, ids, vs_currencies, **kwargs):
         """Get the current price of any cryptocurrencies in any other supported currencies that you need"""
 
-        # remove empty spaces (when querying more than 1 coin, comma-separated,
-        # spaces may exist between coins ie ids='bitcoin, litecoin' -> ids='bitcoin,litecoin')
-        ids=ids.replace(' ','')
-        kwargs['ids'] = ids
-        vs_currencies=vs_currencies.replace(' ','')
-        kwargs['vs_currencies'] = vs_currencies
+        kwargs['ids'] = get_comma_separated_values(ids)
+        kwargs['vs_currencies'] = get_comma_separated_values(vs_currencies)
 
         api_url = '{0}simple/price'.format(self.api_base_url)
         api_url = self.__api_url_params(api_url, kwargs)
@@ -64,12 +63,8 @@ class CoinGeckoAPI:
     def get_token_price(self, id, contract_addresses, vs_currencies, **kwargs):
         """Get the current price of any tokens on this coin (ETH only at this stage as per api docs) in any other supported currencies that you need"""
 
-        # remove empty spaces (when querying more than 1 contact_address/currency, comma-separated,
-        # spaces may exist between addresses/currencies ie vs_currencies='eur, usd' -> ids='eur,usd')
-        contract_addresses=contract_addresses.replace(' ','')
-        kwargs['contract_addresses'] = contract_addresses
-        vs_currencies=vs_currencies.replace(' ','')
-        kwargs['vs_currencies'] = vs_currencies
+        kwargs['contract_addresses'] = get_comma_separated_values(contract_addresses)
+        kwargs['vs_currencies'] = get_comma_separated_values(vs_currencies)
 
         api_url = '{0}simple/token_price/{1}'.format(self.api_base_url, id)
         api_url = self.__api_url_params(api_url, kwargs)
