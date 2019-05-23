@@ -168,7 +168,7 @@ class TestWrapper(unittest.TestCase):
 
         # Act Assert
         with pytest.raises(HTTPError) as HE:
-            CoinGeckoAPI().get_coin_market_chart_by_id('bitcoin', 'usd', 0)
+            CoinGeckoAPI().get_coin_market_chart_by_id('bitcoin', 'usd', 1)
 
 
     @responses.activate
@@ -180,7 +180,7 @@ class TestWrapper(unittest.TestCase):
                           json = json_response, status = 200)
 
         # Act
-        response = CoinGeckoAPI().get_coin_market_chart_by_id('bitcoin', 'usd', 0)
+        response = CoinGeckoAPI().get_coin_market_chart_by_id('bitcoin', 'usd', 1)
 
         ## Assert
         assert response == json_response
