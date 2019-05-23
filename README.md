@@ -24,7 +24,8 @@ cg = CoinGeckoAPI()
 ### Examples
 The required parameters for each endpoint are defined as required (mandatory) parameters for the coresponding functions.
 **Any optional parameters** can be also passed using same names, as defined in CoinGecko API doc (https://www.coingecko.com/api/docs/v3)
-*For parameters that accetp multiple-valued arguments as comma-separated (see /simple/price endpoint), lists can be used directly*
+
+*Besides comma-separated strings for multiple-valued arguments (see /simple/price endpoint), lists can be also used directly.*
 
 Usage examples:
 ```python
