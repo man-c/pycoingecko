@@ -32,6 +32,116 @@ class TestWrapper(unittest.TestCase):
         ## Assert
         assert response == ping_json
 
+
+    #---------- SIMPLE ----------#
+
+    #---------- /simple/price ----------#
+    @responses.activate
+    def test_get_price(self):
+        # Arrange
+        coins_json_sample = {"bitcoin": {"usd": 7984.89}}
+
+        responses.add(responses.GET, 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd',
+                          json = coins_json_sample, status = 200)
+
+        # Act
+        response = CoinGeckoAPI().get_price('bitcoin', 'usd')
+
+        ## Assert
+        assert response == coins_json_sample
+
+    @responses.activate
+    def test_failed_get_price(self):
+        # Arrange
+        responses.add(responses.GET, 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd',
+                          status = 404)
+        exception = HTTPError("HTTP Error")
+
+        # Act Assert
+        with pytest.raises(HTTPError) as HE:
+            CoinGeckoAPI().get_price('bitcoin', 'usd')
+
+    #---------- /simple/token_price/{id} ----------#
+    @responses.activate
+    def test_get_token_price(self):
+        # Arrange
+        coins_json_sample = {'0xB8c77482e45F1F44dE1745F52C74426C631bDD52': {'bnb': 1.0, 'bnb_market_cap': 144443301.0, 'bnb_24h_vol': 17983938.686249834, 'last_updated_at': 1558704332}}
+
+        responses.add(responses.GET, 'https://api.coingecko.com/api/v3/simple/token_price/ethereum?include_market_cap=true&include_24hr_vol=true&include_last_updated_at=true&contract_addresses=0xB8c77482e45F1F44dE1745F52C74426C631bDD52&vs_currencies=bnb',
+                          json = coins_json_sample, status = 200)
+
+        # Act
+        response = CoinGeckoAPI().get_token_price('ethereum', '0xB8c77482e45F1F44dE1745F52C74426C631bDD52', 'bnb', include_market_cap='true', include_24hr_vol='true', include_last_updated_at='true')
+
+        ## Assert
+        assert response == coins_json_sample
+
+    @responses.activate
+    def test_failed_get_token_price(self):
+        # Arrange
+        responses.add(responses.GET, 'https://api.coingecko.com/api/v3/simple/token_price/ethereum?include_market_cap=true&include_24hr_vol=true&include_last_updated_at=true&contract_addresses=0xB8c77482e45F1F44dE1745F52C74426C631bDD52&vs_currencies=bnb',
+                          status = 404)
+        exception = HTTPError("HTTP Error")
+
+        # Act Assert
+        with pytest.raises(HTTPError) as HE:
+            CoinGeckoAPI().get_token_price('ethereum', '0xB8c77482e45F1F44dE1745F52C74426C631bDD52', 'bnb', include_market_cap='true', include_24hr_vol='true', include_last_updated_at='true')
+
+    #---------- /simple/supported_vs_currencies ----------#
+    @responses.activate
+    def test_get_supported_vs_currencies(self):
+        # Arrange
+        coins_json_sample = ['btc', 'eth', 'ltc', 'bch', 'bnb', 'eos', 'xrp', 'xlm', 'usd', 'aed', 'ars', 'aud', 'bdt', 'bhd', 'bmd', 'brl', 'cad', 'chf', 'clp', 'cny', 'czk', 'dkk', 'eur', 'gbp', 'hkd', 'huf', 'idr', 'ils', 'inr', 'jpy', 'krw', 'kwd', 'lkr', 'mmk', 'mxn', 'myr', 'nok', 'nzd', 'php', 'pkr', 'pln', 'rub', 'sar', 'sek', 'sgd', 'thb', 'try', 'twd', 'uah', 'vef', 'vnd', 'zar', 'xdr', 'xag', 'xau']
+
+        responses.add(responses.GET, 'https://api.coingecko.com/api/v3/simple/supported_vs_currencies',
+                          json = coins_json_sample, status = 200)
+
+        # Act
+        response = CoinGeckoAPI().get_supported_vs_currencies()
+
+        ## Assert
+        assert response == coins_json_sample
+
+    @responses.activate
+    def test_failed_get_supported_vs_currencies(self):
+        # Arrange
+        responses.add(responses.GET, 'https://api.coingecko.com/api/v3/simple/supported_vs_currencies',
+                          status = 404)
+        exception = HTTPError("HTTP Error")
+
+        # Act Assert
+        with pytest.raises(HTTPError) as HE:
+            CoinGeckoAPI().get_supported_vs_currencies()
+
+
+    #---------- /simple/supported_vs_currencies ----------#
+    @responses.activate
+    def test_get_supported_vs_currencies(self):
+        # Arrange
+        coins_json_sample = ['btc', 'eth', 'ltc', 'bch', 'bnb', 'eos', 'xrp', 'xlm', 'usd', 'aed', 'ars', 'aud', 'bdt', 'bhd', 'bmd', 'brl', 'cad', 'chf', 'clp', 'cny', 'czk', 'dkk', 'eur', 'gbp', 'hkd', 'huf', 'idr', 'ils', 'inr', 'jpy', 'krw', 'kwd', 'lkr', 'mmk', 'mxn', 'myr', 'nok', 'nzd', 'php', 'pkr', 'pln', 'rub', 'sar', 'sek', 'sgd', 'thb', 'try', 'twd', 'uah', 'vef', 'vnd', 'zar', 'xdr', 'xag', 'xau']
+
+        responses.add(responses.GET, 'https://api.coingecko.com/api/v3/simple/supported_vs_currencies',
+                          json = coins_json_sample, status = 200)
+
+        # Act
+        response = CoinGeckoAPI().get_supported_vs_currencies()
+
+        ## Assert
+        assert response == coins_json_sample
+
+    @responses.activate
+    def test_failed_get_supported_vs_currencies(self):
+        # Arrange
+        responses.add(responses.GET, 'https://api.coingecko.com/api/v3/simple/supported_vs_currencies',
+                          status = 404)
+        exception = HTTPError("HTTP Error")
+
+        # Act Assert
+        with pytest.raises(HTTPError) as HE:
+            CoinGeckoAPI().get_supported_vs_currencies()
+
+
+    #---------- COINS ----------#
     @responses.activate
     def test_failed_get_coins(self):
         # Arrange
@@ -134,6 +244,33 @@ class TestWrapper(unittest.TestCase):
         assert response == bitcoin_json_sample
 
     @responses.activate
+    def test_failed_get_coin_ticker_by_id(self):
+        # Arrange
+        responses.add(responses.GET, 'https://api.coingecko.com/api/v3/coins/bitcoin/tickers',
+                          status = 404)
+        exception = HTTPError("HTTP Error")
+
+        # Act Assert
+        with pytest.raises(HTTPError) as HE:
+            CoinGeckoAPI().get_coin_ticker_by_id('bitcoin')
+
+
+    @responses.activate
+    def test_get_get_coin_ticker_by_id(self):
+        # Arrange
+        bitcoin_json_sample = {'name': 'Bitcoin', 'tickers': [{'base': 'BTC', 'target': 'USDT', 'market': {'name': 'BW.com', 'identifier': 'bw', 'has_trading_incentive': False}, 'last': 7963.0, '    volume': 93428.7568, 'converted_last': {'btc': 0.99993976, 'eth': 31.711347, 'usd': 7979.23}, 'converted_volume': {'btc': 93423, 'eth': 2962752, 'usd': 745489919}, '    bid_ask_spread_percentage': 0.111969, 'timestamp': '2019-05-24T11:20:14+00:00', 'is_anomaly': False, 'is_stale': False, 'trade_url': 'https://www.bw.com/trade/btc_us    dt', 'coin_id': 'bitcoin'}]}
+
+        responses.add(responses.GET, 'https://api.coingecko.com/api/v3/coins/bitcoin/tickers',
+                          json = bitcoin_json_sample, status = 200)
+
+        # Act
+        response = CoinGeckoAPI().get_coin_ticker_by_id('bitcoin')
+
+        ## Assert
+        assert response == bitcoin_json_sample
+
+
+    @responses.activate
     def test_failed_get_coin_history_by_id(self):
         # Arrange
         responses.add(responses.GET, 'https://api.coingecko.com/api/v3/coins/bitcoin/history?date=27-08-2018',
@@ -185,6 +322,62 @@ class TestWrapper(unittest.TestCase):
         ## Assert
         assert response == json_response
 
+
+    @responses.activate
+    def test_failed_get_coin_status_updates_by_id(self):
+        # Arrange
+        responses.add(responses.GET, 'https://api.coingecko.com/api/v3/coins/litecoin/status_updates',
+                          status = 404)
+        exception = HTTPError("HTTP Error")
+
+        # Act Assert
+        with pytest.raises(HTTPError) as HE:
+            CoinGeckoAPI().get_coin_status_updates_by_id('litecoin')
+
+
+    @responses.activate
+    def test_get_coin_status_updates_by_id(self):
+        # Arrange
+        json_response = [ {'description': 'Travala.com Partners with Litecoin Foundation to Champion Crypto Payments. \r\n#TravelWithLitecoin www.travala.com/litecoin\r\n\r\nRead the full announcement here: bit.ly/2LumY3b', 'category': 'general', 'created_at': '2019-05-14T13:56:43.282Z', 'user': 'Keith Yong', 'user_title': 'Operations Director', 'pin': False, 'project': {'type': 'Coin', 'id': 'litecoin', 'name': 'Litecoin', 'symbol': 'ltc', 'image': {'thumb': 'https://assets.coingecko.com/coins/images/2/thumb/litecoin.png?1547033580', 'small': 'https://assets.coingecko.com/coins/images/2/small/litecoin.png?1547033580', 'large': 'https://assets.coingecko.com/coins/images/2/large/litecoin.png?1547033580'}}} ]
+
+        responses.add(responses.GET, 'https://api.coingecko.com/api/v3/coins/litecoin/status_updates',
+                          json = json_response, status = 200)
+
+        # Act
+        response = CoinGeckoAPI().get_coin_status_updates_by_id('litecoin')
+
+        ## Assert
+        assert response == json_response
+
+
+    @responses.activate
+    def test_failed_get_coin_info_from_contract_address_by_id(self):
+        # Arrange
+        responses.add(responses.GET, 'https://api.coingecko.com/api/v3/coins/ethereum/contract/0xe41d2489571d322189246dafa5ebde1f4699f498',
+                          status = 404)
+        exception = HTTPError("HTTP Error")
+
+        # Act Assert
+        with pytest.raises(HTTPError) as HE:
+            CoinGeckoAPI().get_coin_info_from_contract_address_by_id(id='ethereum',contract_address='0xe41d2489571d322189246dafa5ebde1f4699f498')
+
+
+    @responses.activate
+    def test_get_coin_info_from_contract_address_by_id(self):
+        # Arrange
+        json_response = {'id': '0x', 'symbol': 'zrx', 'name': '0x', 'block_time_in_minutes': 0, 'categories': ['Protocol'], 'localization': {'en': '0x', 'es': '0x', 'de': '0x', 'nl': '0x', 'pt': '0x', 'fr': '0x', 'it': '0x', 'hu': '0x', 'ro': '0x', 'sv': '0x', 'pl': '0x', 'id': '0x', 'zh': '0x协议', 'zh-tw': '0x協議', 'ja': 'ロエックス', 'ko': '제로엑스', 'ru': '0x', 'ar': '0x', 'th': '0x', 'vi': '0x', 'tr': '0x'}}
+
+        responses.add(responses.GET, 'https://api.coingecko.com/api/v3/coins/ethereum/contract/0xe41d2489571d322189246dafa5ebde1f4699f498',
+                          json = json_response, status = 200)
+
+        # Act
+        response = CoinGeckoAPI().get_coin_info_from_contract_address_by_id(id='ethereum',contract_address='0xe41d2489571d322189246dafa5ebde1f4699f498')
+
+        ## Assert
+        assert response == json_response
+
+
+    #---------- EXCHANGES ----------#
     @responses.activate
     def test_failed_get_exchanges_list(self):
         # Arrange
