@@ -23,7 +23,9 @@ cg = CoinGeckoAPI()
 
 ### Examples
 The required parameters for each endpoint are defined as required (mandatory) parameters for the coresponding functions.
-Optional parameters can be also passed using same names, as defined in CoinGecko API doc (https://www.coingecko.com/api/docs/v3)
+**Any optional parameters** can be also passed using same names, as defined in CoinGecko API doc (https://www.coingecko.com/api/docs/v3)
+
+*Besides comma-separated strings for multiple-valued arguments (see /simple/price endpoint), lists can be also used directly.*
 
 Usage examples:
 ```python
@@ -31,9 +33,13 @@ Usage examples:
 >>> cg.get_price(ids='bitcoin', vs_currencies='usd')
 {'bitcoin': {'usd': 3462.04}}
 
+>>> cg.get_price(ids='bitcoin,litecoin,ethereum', vs_currencies='usd')
+# OR (lists can be used for multiple-valued arguments)
 >>> cg.get_price(ids=['bitcoin', 'litecoin', 'ethereum'], vs_currencies='usd')
 {'bitcoin': {'usd': 3461.27}, 'ethereum': {'usd': 106.92}, 'litecoin': {'usd': 32.72}}
 
+>>> cg.get_price(ids='bitcoin,litecoin,ethereum', vs_currencies='usd,eur')
+# OR (lists can be used for multiple-valued arguments)
 >>> cg.get_price(ids=['bitcoin', 'litecoin', 'ethereum'], vs_currencies=['usd', 'eur'])
 {'bitcoin': {'usd': 3459.39, 'eur': 3019.33}, 'ethereum': {'usd': 106.91, 'eur': 93.31}, 'litecoin': {'usd': 32.72, 'eur': 28.56}}
 
