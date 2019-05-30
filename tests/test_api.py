@@ -142,6 +142,8 @@ class TestWrapper(unittest.TestCase):
 
 
     #---------- COINS ----------#
+
+    #---------- /price/coins ----------#
     @responses.activate
     def test_failed_get_coins(self):
         # Arrange
@@ -167,6 +169,8 @@ class TestWrapper(unittest.TestCase):
         ## Assert
         assert response == coins_json_sample
 
+
+    #---------- /price/coins/list ----------#
     @responses.activate
     def test_failed_get_coins_list(self):
         # Arrange
@@ -192,6 +196,8 @@ class TestWrapper(unittest.TestCase):
         ## Assert
         assert response == coins_json_sample
 
+
+    #---------- /price/coins/markets ----------#
     @responses.activate
     def test_failed_get_coins_markets(self):
         # Arrange
@@ -217,6 +223,8 @@ class TestWrapper(unittest.TestCase):
         ## Assert
         assert response == markets_json_sample
 
+
+    #---------- /price/coins/{id} ----------#
     @responses.activate
     def test_failed_get_coin_by_id(self):
         # Arrange
@@ -243,6 +251,8 @@ class TestWrapper(unittest.TestCase):
         ## Assert
         assert response == bitcoin_json_sample
 
+
+    #---------- /price/coins/{id}/tickers ----------#
     @responses.activate
     def test_failed_get_coin_ticker_by_id(self):
         # Arrange
@@ -270,6 +280,7 @@ class TestWrapper(unittest.TestCase):
         assert response == bitcoin_json_sample
 
 
+    #---------- /price/coins/{id}/history ----------#
     @responses.activate
     def test_failed_get_coin_history_by_id(self):
         # Arrange
@@ -296,6 +307,8 @@ class TestWrapper(unittest.TestCase):
         ## Assert
         assert response == history_json_sample
 
+
+    #---------- /price/coins/{id}/market_chart ----------#
     @responses.activate
     def test_failed_get_coin_market_chart_by_id(self):
         # Arrange
@@ -323,6 +336,7 @@ class TestWrapper(unittest.TestCase):
         assert response == json_response
 
 
+    #---------- /price/coins/{id}/status_updates ----------#
     @responses.activate
     def test_failed_get_coin_status_updates_by_id(self):
         # Arrange
@@ -350,6 +364,7 @@ class TestWrapper(unittest.TestCase):
         assert response == json_response
 
 
+    #---------- /price/coins/{id}/contract/{contract_address} ----------#
     @responses.activate
     def test_failed_get_coin_info_from_contract_address_by_id(self):
         # Arrange
@@ -378,6 +393,9 @@ class TestWrapper(unittest.TestCase):
 
 
     #---------- EXCHANGES ----------#
+
+
+    #---------- /exchanges ----------#
     @responses.activate
     def test_failed_get_exchanges_list(self):
         # Arrange
@@ -404,6 +422,37 @@ class TestWrapper(unittest.TestCase):
         ## Assert
         assert response == json_response
 
+
+    #---------- /exchanges/list ----------#
+    @responses.activate
+    def test_failed_get_exchanges_id_name_list(self):
+        # Arrange
+        responses.add(responses.GET, 'https://api.coingecko.com/api/v3/exchanges/list',
+                          status = 404)
+        exception = HTTPError("HTTP Error")
+
+        # Act Assert
+        with pytest.raises(HTTPError) as HE:
+            CoinGeckoAPI().get_exchanges_id_name_list()
+
+
+    @responses.activate
+    def test_get_exchanges_id_name_list(self):
+        # Arrange
+        json_response = [{'id': 'abcc', 'name': 'ABCC'}, {'id': 'acx', 'name': 'ACX'}, {'id': 'airswap', 'name': 'AirSwap'}]
+
+        responses.add(responses.GET, 'https://api.coingecko.com/api/v3/exchanges/list',
+                          json = json_response, status = 200)
+
+        # Act
+        response = CoinGeckoAPI().get_exchanges_id_name_list()
+
+        ## Assert
+        assert response == json_response
+
+
+
+    #---------- /exchanges/{id} ----------#
     @responses.activate
     def test_failed_get_exchanges_by_id(self):
         # Arrange
@@ -430,6 +479,10 @@ class TestWrapper(unittest.TestCase):
         ## Assert
         assert response == json_response
 
+
+    #---------- EXCHANGE RATES ----------#
+
+    #---------- /exchange_rates ----------#
     @responses.activate
     def test_failed_get_exchange_rates(self):
         # Arrange
@@ -456,6 +509,10 @@ class TestWrapper(unittest.TestCase):
         ## Assert
         assert response == json_response
 
+
+    #---------- GLOBAL ----------#
+
+    #---------- /global ----------#
     @responses.activate
     def test_failed_get_global(self):
         # Arrange
