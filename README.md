@@ -125,6 +125,10 @@ https://www.coingecko.com/api/docs/v3
     ```python
     cg.get_exchanges_status_updates_by_id()
     ```
+  - /exchanges/{id}/volume_chart (Get volume_chart data for a given exchange (beta))
+    ```python
+    cg.get_exchanges_volume_chart_by_id()
+    ```
 - status_updates (beta)
   - /status_updates (List all status_updates with data (description, category, created_at, user, user_title and pin))
     ```python

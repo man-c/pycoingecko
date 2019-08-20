@@ -226,6 +226,18 @@ class CoinGeckoAPI:
         return self.__request(api_url)
 
 
+    @list_args_to_comma_separated
+    def get_exchanges_volume_chart_by_id(self, id, days, **kwargs):
+        """Get volume chart data for a given exchange"""
+
+        kwargs['days'] = days
+
+        api_url = '{0}exchanges/{1}/volume_chart'.format(self.api_base_url, id)
+        api_url = self.__api_url_params(api_url, kwargs)
+
+        return self.__request(api_url)
+
+
     #---------- STATUS UPDATES ----------#
     @list_args_to_comma_separated
     def get_status_updates(self, **kwargs):
