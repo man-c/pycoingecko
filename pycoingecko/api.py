@@ -23,9 +23,12 @@ class CoinGeckoAPI:
         #print(url)
         try:
             response = self.session.get(url, timeout = self.request_timeout)
-            content = json.loads(response.content.decode('utf-8'))
-            response.raise_for_status()
-            return content
+
+            if "json" in response.headers.get('content-type'):
+                content = json.loads(response.content.decode('utf-8'))
+                response.raise_for_status()
+                return content
+                
         except Exception as e:
             try:
                 raise ValueError(content)
