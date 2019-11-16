@@ -297,3 +297,19 @@ class CoinGeckoAPI:
         api_url = '{0}global'.format(self.api_base_url)
 
         return self.__request(api_url)['data']
+
+
+    #---------- FINANCE ----------#
+    def get_finance_platforms(self):
+        """Get cryptocurrency finance platforms data"""
+
+        api_url = '{0}finance_platforms'.format(self.api_base_url)
+
+        return self.__request(api_url)
+
+    def get_finance_products(self):
+        """Get cryptocurrency finance products data"""
+
+        api_url = '{0}finance_products'.format(self.api_base_url)
+
+        return self.__request(api_url)
