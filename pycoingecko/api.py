@@ -167,6 +167,15 @@ class CoinGeckoAPI:
 
 
     @list_args_to_comma_separated
+    def get_coin_market_chart_range_by_id(self, id, vs_currency, from_timestamp, to_timestamp):
+        """Get historical market data include price, market cap, and 24h volume within a range of timestamp (granularity auto)"""
+
+        api_url = '{0}coins/{1}/market_chart/range?vs_currency={2}&from={3}&to={4}'.format(self.api_base_url, id, vs_currency, from_timestamp, to_timestamp)
+
+        return self.__request(api_url)
+
+
+    @list_args_to_comma_separated
     def get_coin_status_updates_by_id(self, id, **kwargs):
         """Get status updates for a given coin"""
 
