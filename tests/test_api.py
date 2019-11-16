@@ -368,13 +368,13 @@ class TestWrapper(unittest.TestCase):
     @responses.activate
     def test_failed_get_coin_info_from_contract_address_by_id(self):
         # Arrange
-        responses.add(responses.GET, 'https://api.coingecko.com/api/v3/coins/ethereum/contract/0xe41d2489571d322189246dafa5ebde1f4699f498',
+        responses.add(responses.GET, 'https://api.coingecko.com/api/v3/coins/ethereum/contract/0x0D8775F648430679A709E98d2b0Cb6250d2887EF',
                           status = 404)
         exception = HTTPError("HTTP Error")
 
         # Act Assert
         with pytest.raises(HTTPError) as HE:
-            CoinGeckoAPI().get_coin_info_from_contract_address_by_id(id='ethereum',contract_address='0xe41d2489571d322189246dafa5ebde1f4699f498')
+            CoinGeckoAPI().get_coin_info_from_contract_address_by_id(id='ethereum',contract_address='0x0D8775F648430679A709E98d2b0Cb6250d2887EF')
 
 
     @responses.activate
@@ -382,11 +382,11 @@ class TestWrapper(unittest.TestCase):
         # Arrange
         json_response = {'id': '0x', 'symbol': 'zrx', 'name': '0x', 'block_time_in_minutes': 0, 'categories': ['Protocol'], 'localization': {'en': '0x', 'es': '0x', 'de': '0x', 'nl': '0x', 'pt': '0x', 'fr': '0x', 'it': '0x', 'hu': '0x', 'ro': '0x', 'sv': '0x', 'pl': '0x', 'id': '0x', 'zh': '0x协议', 'zh-tw': '0x協議', 'ja': 'ロエックス', 'ko': '제로엑스', 'ru': '0x', 'ar': '0x', 'th': '0x', 'vi': '0x', 'tr': '0x'}}
 
-        responses.add(responses.GET, 'https://api.coingecko.com/api/v3/coins/ethereum/contract/0xe41d2489571d322189246dafa5ebde1f4699f498',
+        responses.add(responses.GET, 'https://api.coingecko.com/api/v3/coins/ethereum/contract/0x0D8775F648430679A709E98d2b0Cb6250d2887EF',
                           json = json_response, status = 200)
 
         # Act
-        response = CoinGeckoAPI().get_coin_info_from_contract_address_by_id(id='ethereum',contract_address='0xe41d2489571d322189246dafa5ebde1f4699f498')
+        response = CoinGeckoAPI().get_coin_info_from_contract_address_by_id(id='ethereum',contract_address='0x0D8775F648430679A709E98d2b0Cb6250d2887EF')
 
         ## Assert
         assert response == json_response
