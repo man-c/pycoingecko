@@ -368,13 +368,13 @@ class TestWrapper(unittest.TestCase):
     @responses.activate
     def test_failed_get_coin_info_from_contract_address_by_id(self):
         # Arrange
-        responses.add(responses.GET, 'https://api.coingecko.com/api/v3/coins/ethereum/contract/0xe41d2489571d322189246dafa5ebde1f4699f498',
+        responses.add(responses.GET, 'https://api.coingecko.com/api/v3/coins/ethereum/contract/0x0D8775F648430679A709E98d2b0Cb6250d2887EF',
                           status = 404)
         exception = HTTPError("HTTP Error")
 
         # Act Assert
         with pytest.raises(HTTPError) as HE:
-            CoinGeckoAPI().get_coin_info_from_contract_address_by_id(id='ethereum',contract_address='0xe41d2489571d322189246dafa5ebde1f4699f498')
+            CoinGeckoAPI().get_coin_info_from_contract_address_by_id(id='ethereum',contract_address='0x0D8775F648430679A709E98d2b0Cb6250d2887EF')
 
 
     @responses.activate
@@ -382,11 +382,11 @@ class TestWrapper(unittest.TestCase):
         # Arrange
         json_response = {'id': '0x', 'symbol': 'zrx', 'name': '0x', 'block_time_in_minutes': 0, 'categories': ['Protocol'], 'localization': {'en': '0x', 'es': '0x', 'de': '0x', 'nl': '0x', 'pt': '0x', 'fr': '0x', 'it': '0x', 'hu': '0x', 'ro': '0x', 'sv': '0x', 'pl': '0x', 'id': '0x', 'zh': '0x协议', 'zh-tw': '0x協議', 'ja': 'ロエックス', 'ko': '제로엑스', 'ru': '0x', 'ar': '0x', 'th': '0x', 'vi': '0x', 'tr': '0x'}}
 
-        responses.add(responses.GET, 'https://api.coingecko.com/api/v3/coins/ethereum/contract/0xe41d2489571d322189246dafa5ebde1f4699f498',
+        responses.add(responses.GET, 'https://api.coingecko.com/api/v3/coins/ethereum/contract/0x0D8775F648430679A709E98d2b0Cb6250d2887EF',
                           json = json_response, status = 200)
 
         # Act
-        response = CoinGeckoAPI().get_coin_info_from_contract_address_by_id(id='ethereum',contract_address='0xe41d2489571d322189246dafa5ebde1f4699f498')
+        response = CoinGeckoAPI().get_coin_info_from_contract_address_by_id(id='ethereum',contract_address='0x0D8775F648430679A709E98d2b0Cb6250d2887EF')
 
         ## Assert
         assert response == json_response
@@ -538,4 +538,64 @@ class TestWrapper(unittest.TestCase):
 
         ## Assert
         expected_response = { "active_cryptocurrencies": 2517, "upcoming_icos": 360, "ongoing_icos": 423, "ended_icos": 2037, "markets": 197 }
+        assert response == expected_response
+
+
+
+    #---------- FINANCE ----------#
+
+    #---------- /finance_platforms ----------#
+
+    @responses.activate
+    def test_failed_get_finance_platforms(self):
+        # Arrange
+        responses.add(responses.GET, 'https://api.coingecko.com/api/v3/finance_platforms',
+                          status = 404)
+        exception = HTTPError("HTTP Error")
+
+        # Act Assert
+        with pytest.raises(HTTPError) as HE:
+            CoinGeckoAPI().get_finance_platforms()
+
+    @responses.activate
+    def test_get_finance_platforms(self):
+        # Arrange
+        json_response = [{"name": "Binance Lending", "facts": "", "category": "", "centralized": False, "website_url": ""}, {"name": "Celsius Network", "facts": "", "category": "", "centralized": False, "website_url": ""}, {"name": "Compound Finance", "facts": "", "category": "", "centralized": False, "website_url": ""}, {"name": "dYdX", "facts": "", "category": "", "centralized": False, "website_url": ""}, {"name": "Nexo", "facts": "", "category": "", "centralized": False, "website_url": ""}, {"name": "Staked US", "facts": "", "category": "", "centralized": False, "website_url": "https://staked.us/"}, {"name": "Cobo", "facts": "", "category": "", "centralized": False, "website_url": "https://cobo.com/"}, {"name": "Crypto.com", "facts": "", "category": "", "centralized": True, "website_url": "https://crypto.com/en/"}]
+
+        responses.add(responses.GET, 'https://api.coingecko.com/api/v3/finance_platforms',
+                          json = json_response, status = 200)
+
+        # Act
+        response = CoinGeckoAPI().get_finance_platforms()
+
+        ## Assert
+        expected_response = [{"name": "Binance Lending", "facts": "", "category": "", "centralized": False, "website_url": ""}, {"name": "Celsius Network", "facts": "", "category": "", "centralized": False, "website_url": ""}, {"name": "Compound Finance", "facts": "", "category": "", "centralized": False, "website_url": ""}, {"name": "dYdX", "facts": "", "category": "", "centralized": False, "website_url": ""}, {"name": "Nexo", "facts": "", "category": "", "centralized": False, "website_url": ""}, {"name": "Staked US", "facts": "", "category": "", "centralized": False, "website_url": "https://staked.us/"}, {"name": "Cobo", "facts": "", "category": "", "centralized": False, "website_url": "https://cobo.com/"}, {"name": "Crypto.com", "facts": "", "category": "", "centralized": True, "website_url": "https://crypto.com/en/"}]
+        assert response == expected_response
+
+    #---------- /finance_products ----------#
+
+    @responses.activate
+    def test_failed_get_finance_products(self):
+        # Arrange
+        responses.add(responses.GET, 'https://api.coingecko.com/api/v3/finance_products',
+                          status = 404)
+        exception = HTTPError("HTTP Error")
+
+        # Act Assert
+        with pytest.raises(HTTPError) as HE:
+            CoinGeckoAPI().get_finance_products()
+
+    @responses.activate
+    def test_get_finance_products(self):
+        # Arrange
+        json_response = [{"name": "Binance Lending", "facts": "", "category": "", "centralized": False, "website_url": ""}, {"name": "Celsius Network", "facts": "", "category": "", "centralized": False, "website_url": ""}, {"name": "Compound Finance", "facts": "", "category": "", "centralized": False, "website_url": ""}, {"name": "dYdX", "facts": "", "category": "", "centralized": False, "website_url": ""}, {"name": "Nexo", "facts": "", "category": "", "centralized": False, "website_url": ""}, {"name": "Staked US", "facts": "", "category": "", "centralized": False, "website_url": "https://staked.us/"}, {"name": "Cobo", "facts": "", "category": "", "centralized": False, "website_url": "https://cobo.com/"}, {"name": "Crypto.com", "facts": "", "category": "", "centralized": True, "website_url": "https://crypto.com/en/"}]
+
+        responses.add(responses.GET, 'https://api.coingecko.com/api/v3/finance_platforms',
+                          json = json_response, status = 200)
+
+        # Act
+        response = CoinGeckoAPI().get_finance_platforms()
+
+        ## Assert
+        expected_response = [{"name": "Binance Lending", "facts": "", "category": "", "centralized": False, "website_url": ""}, {"name": "Celsius Network", "facts": "", "category": "", "centralized": False, "website_url": ""}, {"name": "Compound Finance", "facts": "", "category": "", "centralized": False, "website_url": ""}, {"name": "dYdX", "facts": "", "category": "", "centralized": False, "website_url": ""}, {"name": "Nexo", "facts": "", "category": "", "centralized": False, "website_url": ""}, {"name": "Staked US", "facts": "", "category": "", "centralized": False, "website_url": "https://staked.us/"}, {"name": "Cobo", "facts": "", "category": "", "centralized": False, "website_url": "https://cobo.com/"}, {"name": "Crypto.com", "facts": "", "category": "", "centralized": True, "website_url": "https://crypto.com/en/"}]
         assert response == expected_response

@@ -23,14 +23,19 @@ class CoinGeckoAPI:
         #print(url)
         try:
             response = self.session.get(url, timeout = self.request_timeout)
-            content = json.loads(response.content.decode('utf-8'))
             response.raise_for_status()
+            content = json.loads(response.content.decode('utf-8'))
             return content
         except Exception as e:
+            # check if json (with error message) is returned
             try:
+                content = json.loads(response.content.decode('utf-8'))
                 raise ValueError(content)
-            except UnboundLocalError as e:
+            # if no json
+            except json.decoder.JSONDecodeError:
                 pass
+            #except UnboundLocalError as e:
+            #    pass
             raise
 
 
@@ -162,6 +167,15 @@ class CoinGeckoAPI:
 
 
     @list_args_to_comma_separated
+    def get_coin_market_chart_range_by_id(self, id, vs_currency, from_timestamp, to_timestamp):
+        """Get historical market data include price, market cap, and 24h volume within a range of timestamp (granularity auto)"""
+
+        api_url = '{0}coins/{1}/market_chart/range?vs_currency={2}&from={3}&to={4}'.format(self.api_base_url, id, vs_currency, from_timestamp, to_timestamp)
+
+        return self.__request(api_url)
+
+
+    @list_args_to_comma_separated
     def get_coin_status_updates_by_id(self, id, **kwargs):
         """Get status updates for a given coin"""
 
@@ -171,11 +185,30 @@ class CoinGeckoAPI:
         return self.__request(api_url)
 
 
+    #---------- Contract ----------#
     @list_args_to_comma_separated
     def get_coin_info_from_contract_address_by_id(self, id, contract_address):
         """Get coin info from contract address"""
 
         api_url = '{0}coins/{1}/contract/{2}'.format(self.api_base_url, id, contract_address)
+
+        return self.__request(api_url)
+
+
+    @list_args_to_comma_separated
+    def get_coin_market_chart_from_contract_address_by_id(self, id, contract_address, vs_currency, days):
+        """Get historical market data include price, market cap, and 24h volume (granularity auto) from a contract address"""
+
+        api_url = '{0}coins/{1}/contract/{2}/market_chart/?vs_currency={3}&days={4}'.format(self.api_base_url, id, contract_address, vs_currency, days)
+
+        return self.__request(api_url)
+
+
+    @list_args_to_comma_separated
+    def get_coin_market_chart_range_from_contract_address_by_id(self, id, contract_address, vs_currency, from_timestamp, to_timestamp):
+        """Get historical market data include price, market cap, and 24h volume within a range of timestamp (granularity auto) from a contract address"""
+
+        api_url = '{0}coins/{1}/contract/{2}/market_chart/range?vs_currency={3}&from={4}&to={5}'.format(self.api_base_url, id, contract_address, vs_currency, from_timestamp, to_timestamp)
 
         return self.__request(api_url)
 
@@ -238,6 +271,22 @@ class CoinGeckoAPI:
         return self.__request(api_url)
 
 
+    #---------- FINANCE ----------#
+    def get_finance_platforms(self):
+        """Get cryptocurrency finance platforms data"""
+
+        api_url = '{0}finance_platforms'.format(self.api_base_url)
+
+        return self.__request(api_url)
+
+    def get_finance_products(self):
+        """Get cryptocurrency finance products data"""
+
+        api_url = '{0}finance_products'.format(self.api_base_url)
+
+        return self.__request(api_url)
+
+
     #---------- STATUS UPDATES ----------#
     @list_args_to_comma_separated
     def get_status_updates(self, **kwargs):
@@ -292,3 +341,4 @@ class CoinGeckoAPI:
         api_url = '{0}global'.format(self.api_base_url)
 
         return self.__request(api_url)['data']
+

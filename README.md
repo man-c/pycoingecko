@@ -96,13 +96,26 @@ https://www.coingecko.com/api/docs/v3
     ```python 
     cg.get_coin_market_chart_by_id()
     ```
-  - /coins/{id}/status_updates (Get status updates for a given coin (beta))
+  - /coins/{id}/market_chart/range (Get historical market data include price, market cap, and 24h volume within a range of timestamp (granularity auto))
     ```python 
+    cg.get_coin_market_chart_range_by_id()
+    ```
+  - /coins/{id}/status_updates (Get status updates for a given coin (beta))
+    ```python
     cg.get_coin_status_updates_by_id()
     ```
+- contract
   - /coins/{id}/contract/{contract_address} (Get coin info from contract address)
-    ```python 
+    ```python
     cg.get_coin_info_from_contract_address_by_id()
+    ```
+  - /coins/{id}/contract/{contract_address}/market_chart/ (Get historical market data include price, market cap, and 24h volume (granularity auto) from a contract address)
+    ```python
+    cg.get_coin_market_chart_from_contract_address_by_id()
+    ```
+  - /coins/{id}/contract/{contract_address}/market_chart/range (Get historical market data include price, market cap, and 24h volume within a range of timestamp (granularity auto) from a contract address)
+    ```python
+    cg.get_coin_market_chart_range_from_contract_address_by_id()
     ```
 - exchanges (beta)
   - /exchanges (List all exchanges)
@@ -128,6 +141,15 @@ https://www.coingecko.com/api/docs/v3
   - /exchanges/{id}/volume_chart (Get volume_chart data for a given exchange (beta))
     ```python
     cg.get_exchanges_volume_chart_by_id()
+    ```
+- finance (beta)
+  - /finance_platforms (List all finance platforms)
+    ```python
+    cg.get_finance_platforms()
+    ```
+  - /finance_products (List all finance products)
+    ```python
+    cg.get_finance_products()
     ```
 - status_updates (beta)
   - /status_updates (List all status_updates with data (description, category, created_at, user, user_title and pin))
