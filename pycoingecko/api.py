@@ -287,6 +287,15 @@ class CoinGeckoAPI:
         return self.__request(api_url)
 
 
+    #---------- DERIVATIVES ----------#
+    def get_derivatives_list(self):
+        """List all derivative tickers"""
+
+        api_url = '{0}derivatives'.format(self.api_base_url)
+
+        return self.__request(api_url)
+
+
     #---------- STATUS UPDATES ----------#
     @list_args_to_comma_separated
     def get_status_updates(self, **kwargs):
