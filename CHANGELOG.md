@@ -1,4 +1,9 @@
 
+1.1.0 / 2019-12-06
+==================
+
+  * added derivatives endpoints (/derivatives, /derivatives/exchanges, /derivatives/exchanges/{id}, /derivatives/exchanges/list)
+
 1.0.0 / 2019-11-17
 ==================
 
