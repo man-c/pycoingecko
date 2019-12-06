@@ -151,6 +151,23 @@ https://www.coingecko.com/api/docs/v3
     ```python
     cg.get_finance_products()
     ```
+- derivatives (beta)
+  - /derivatives (List all derivative tickers)
+    ```python
+    cg.get_derivatives()
+    ```
+  - /derivatives/exchanges (List all derivative exchanges)
+    ```python
+    cg.get_derivatives_exchanges()
+    ```
+  - /derivatives/exchanges/{id} (Show derivative exchange data)
+    ```python
+    cg.get_derivatives_exchanges_by_id()
+    ```
+  - /derivatives/exchanges/list (List all derivative exchanges name and identifier)
+    ```python
+    cg.get_derivatives_exchanges_list()
+    ```
 - status_updates (beta)
   - /status_updates (List all status_updates with data (description, category, created_at, user, user_title and pin))
     ```python
