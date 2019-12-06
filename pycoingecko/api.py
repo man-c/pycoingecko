@@ -19,7 +19,7 @@ class CoinGeckoAPI:
         self.session.mount('http://', HTTPAdapter(max_retries=retries))
 
     def __request(self, url):
-        print(url)
+        # print(url)
         try:
             response = self.session.get(url, timeout=self.request_timeout)
             response.raise_for_status()
@@ -283,10 +283,10 @@ class CoinGeckoAPI:
 
         return self.__request(api_url)
 
-    def get_derivatives_by_id(self, id):
+    def get_derivatives_exchanges_by_id(self, id):
         """List all derivative tickers"""
 
-        api_url = '{0}derivatives/exchanges/{1]'.format(self.api_base_url, id)
+        api_url = '{0}derivatives/exchanges/{1}'.format(self.api_base_url, id)
 
         return self.__request(api_url)
 
