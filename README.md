@@ -151,6 +151,19 @@ https://www.coingecko.com/api/docs/v3
     ```python
     cg.get_finance_products()
     ```
+- *indexes (beta)*
+  - **/indexes** (List all market indexes)
+    ```python
+    cg.get_indexes()
+    ```
+  - **/indexes/{id}** (Get market index by id)
+    ```python
+    cg.get_indexes_by_id()
+    ```
+  - **/indexes/list** (List market indexes id and name)
+    ```python
+    cg.get_indexes_list()
+    ```
 - *derivatives (beta)*
   - **/derivatives** (List all derivative tickers)
     ```python
