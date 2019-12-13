@@ -1,4 +1,9 @@
 
+1.2.0 / 2019-12-13
+==================
+
+  * added indexes endpoints (/indexes, /indexes/{id}, /indexes/list)
+
 1.1.0 / 2019-12-06
 ==================
 
@@ -7,9 +12,9 @@
 1.0.0 / 2019-11-17
 ==================
 
-  * update tests
-  * include more contract endpoints
-  * include /coins/{id}/market_chart/range endpoint
+  * updated tests
+  * included more contract endpoints
+  * included /coins/{id}/market_chart/range endpoint
   * basic methods for finance endpoints with tests
   * updated error handling
   * added check for json format in __request; coingecko returns a html string when something goes wrong in the request, which results in an error when json.loads is called on the html string.
@@ -17,7 +22,7 @@
 0.4.0 / 2019-08-20
 ==================
 
-  * include /exchanges/{id}/volume_chart endpoint
+  * included /exchanges/{id}/volume_chart endpoint
 
 0.3.0 / 2019-05-31
 ==================
@@ -37,17 +42,17 @@
 ==================
 
   * README incude examples
-  * include /exchanges/list endpoint
+  * included /exchanges/list endpoint
 
 0.1.0 / 2019-01-02
 ==================
 
-  * add /coins/{id}/tickers endpoint
-  * include events endpoints
-  * include status_updates endpoints
-  * update exchanges endpoints
-  * update coins endpoints
-  * include simple endpoints
+  * added /coins/{id}/tickers endpoint
+  * included events endpoints
+  * included status_updates endpoints
+  * updated exchanges endpoints
+  * updated coins endpoints
+  * included simple endpoints
 
 0.0.2 / 2018-11-20
 ==================
