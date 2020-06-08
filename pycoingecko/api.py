@@ -106,7 +106,7 @@ class CoinGeckoAPI:
 
     @list_args_to_comma_separated
     def get_coins_markets(self, vs_currency, **kwargs):
-        """List all supported coins price, market cap, volume, and market related data (no pagination required)"""
+        """List all supported coins price, market cap, volume, and market related data"""
 
         kwargs['vs_currency'] = vs_currency
 
@@ -225,7 +225,7 @@ class CoinGeckoAPI:
 
     @list_args_to_comma_separated
     def get_exchanges_tickers_by_id(self, id, **kwargs):
-        """Get exchange tickers (paginated)"""
+        """Get exchange tickers (paginated, 100 tickers per page)"""
 
         api_url = '{0}exchanges/{1}/tickers'.format(self.api_base_url, id)
         api_url = self.__api_url_params(api_url, kwargs)
