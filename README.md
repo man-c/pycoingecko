@@ -76,7 +76,7 @@ https://www.coingecko.com/api/docs/v3
     ```python 
     cg.get_coins_list()
     ```
-  - **/coins/markets** (List all supported coins price, market cap, volume, and market related data (no pagination required))
+  - **/coins/markets** (List all supported coins price, market cap, volume, and market related data)
     ```python 
     cg.get_coins_markets()
     ```
@@ -130,7 +130,7 @@ https://www.coingecko.com/api/docs/v3
     ```python
     cg.get_exchanges_by_id()
     ```
-  - **/exchanges/{id}/tickers** (Get exchange tickers (paginated))
+  - **/exchanges/{id}/tickers** (Get exchange tickers (paginated, 100 tickers per page))
     ```python
     cg.get_exchanges_tickers_by_id()
     ```
