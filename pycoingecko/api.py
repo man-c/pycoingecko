@@ -201,10 +201,11 @@ class CoinGeckoAPI:
         return self.__request(api_url)
 
     # ---------- EXCHANGES ----------#
-    def get_exchanges_list(self):
+    def get_exchanges_list(self, **kwargs):
         """List all exchanges"""
 
         api_url = '{0}exchanges'.format(self.api_base_url)
+        api_url = self.__api_url_params(api_url, kwargs)
 
         return self.__request(api_url)
 
