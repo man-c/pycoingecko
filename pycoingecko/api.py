@@ -254,17 +254,19 @@ class CoinGeckoAPI:
         return self.__request(api_url)
 
     # ---------- FINANCE ----------#
-    def get_finance_platforms(self):
+    def get_finance_platforms(self, **kwargs):
         """Get cryptocurrency finance platforms data"""
 
         api_url = '{0}finance_platforms'.format(self.api_base_url)
+        api_url = self.__api_url_params(api_url, kwargs)
 
         return self.__request(api_url)
 
-    def get_finance_products(self):
+    def get_finance_products(self, **kwargs):
         """Get cryptocurrency finance products data"""
 
         api_url = '{0}finance_products'.format(self.api_base_url)
+        api_url = self.__api_url_params(api_url, kwargs)
 
         return self.__request(api_url)
 
@@ -292,10 +294,11 @@ class CoinGeckoAPI:
         return self.__request(api_url)
 
     # ---------- DERIVATIVES ----------#
-    def get_derivatives(self):
+    def get_derivatives(self, **kwargs):
         """List all derivative tickers"""
 
         api_url = '{0}derivatives'.format(self.api_base_url)
+        api_url = self.__api_url_params(api_url, kwargs)
 
         return self.__request(api_url)
 
@@ -307,10 +310,11 @@ class CoinGeckoAPI:
 
         return self.__request(api_url)
 
-    def get_derivatives_exchanges_by_id(self, id):
+    def get_derivatives_exchanges_by_id(self, id, **kwargs):
         """List all derivative tickers"""
 
         api_url = '{0}derivatives/exchanges/{1}'.format(self.api_base_url, id)
+        api_url = self.__api_url_params(api_url, kwargs)
 
         return self.__request(api_url)
 
