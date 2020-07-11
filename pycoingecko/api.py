@@ -80,10 +80,12 @@ class CoinGeckoAPI:
         api_url = self.__api_url_params(api_url, kwargs)
         return self.__request(api_url)
 
-    def get_supported_vs_currencies(self):
+    def get_supported_vs_currencies(self, **kwargs):
         """Get list of supported_vs_currencies"""
 
         api_url = '{0}simple/supported_vs_currencies'.format(self.api_base_url)
+        api_url = self.__api_url_params(api_url, kwargs)
+
         return self.__request(api_url)
 
     # ---------- COINS ----------#
@@ -97,10 +99,11 @@ class CoinGeckoAPI:
 
         return self.__request(api_url)
 
-    def get_coins_list(self):
+    def get_coins_list(self, **kwargs):
         """List all supported coins id, name and symbol (no pagination required)"""
 
         api_url = '{0}coins/list'.format(self.api_base_url)
+        api_url = self.__api_url_params(api_url, kwargs)
 
         return self.__request(api_url)
 
@@ -145,20 +148,22 @@ class CoinGeckoAPI:
         return self.__request(api_url)
 
     @list_args_to_comma_separated
-    def get_coin_market_chart_by_id(self, id, vs_currency, days):
+    def get_coin_market_chart_by_id(self, id, vs_currency, days, **kwargs):
         """Get historical market data include price, market cap, and 24h volume (granularity auto)"""
 
         api_url = '{0}coins/{1}/market_chart?vs_currency={2}&days={3}'.format(self.api_base_url, id, vs_currency, days)
+        api_url = self.__api_url_params(api_url, kwargs)
 
         return self.__request(api_url)
 
     @list_args_to_comma_separated
-    def get_coin_market_chart_range_by_id(self, id, vs_currency, from_timestamp, to_timestamp):
+    def get_coin_market_chart_range_by_id(self, id, vs_currency, from_timestamp, to_timestamp, **kwargs):
         """Get historical market data include price, market cap, and 24h volume within a range of timestamp (granularity auto)"""
 
         api_url = '{0}coins/{1}/market_chart/range?vs_currency={2}&from={3}&to={4}'.format(self.api_base_url, id,
                                                                                            vs_currency, from_timestamp,
                                                                                            to_timestamp)
+        api_url = self.__api_url_params(api_url, kwargs)
 
         return self.__request(api_url)
 
@@ -173,30 +178,33 @@ class CoinGeckoAPI:
 
     # ---------- Contract ----------#
     @list_args_to_comma_separated
-    def get_coin_info_from_contract_address_by_id(self, id, contract_address):
+    def get_coin_info_from_contract_address_by_id(self, id, contract_address, **kwargs):
         """Get coin info from contract address"""
 
         api_url = '{0}coins/{1}/contract/{2}'.format(self.api_base_url, id, contract_address)
+        api_url = self.__api_url_params(api_url, kwargs)
 
         return self.__request(api_url)
 
     @list_args_to_comma_separated
-    def get_coin_market_chart_from_contract_address_by_id(self, id, contract_address, vs_currency, days):
+    def get_coin_market_chart_from_contract_address_by_id(self, id, contract_address, vs_currency, days, **kwargs):
         """Get historical market data include price, market cap, and 24h volume (granularity auto) from a contract address"""
 
         api_url = '{0}coins/{1}/contract/{2}/market_chart/?vs_currency={3}&days={4}'.format(self.api_base_url, id,
                                                                                             contract_address,
                                                                                             vs_currency, days)
+        api_url = self.__api_url_params(api_url, kwargs)
 
         return self.__request(api_url)
 
     @list_args_to_comma_separated
     def get_coin_market_chart_range_from_contract_address_by_id(self, id, contract_address, vs_currency, from_timestamp,
-                                                                to_timestamp):
+                                                                to_timestamp, **kwargs):
         """Get historical market data include price, market cap, and 24h volume within a range of timestamp (granularity auto) from a contract address"""
 
         api_url = '{0}coins/{1}/contract/{2}/market_chart/range?vs_currency={3}&from={4}&to={5}'.format(
             self.api_base_url, id, contract_address, vs_currency, from_timestamp, to_timestamp)
+        api_url = self.__api_url_params(api_url, kwargs)
 
         return self.__request(api_url)
 
@@ -209,18 +217,20 @@ class CoinGeckoAPI:
 
         return self.__request(api_url)
 
-    def get_exchanges_id_name_list(self):
+    def get_exchanges_id_name_list(self, **kwargs):
         """List all supported markets id and name (no pagination required)"""
 
         api_url = '{0}exchanges/list'.format(self.api_base_url)
+        api_url = self.__api_url_params(api_url, kwargs)
 
         return self.__request(api_url)
 
     @list_args_to_comma_separated
-    def get_exchanges_by_id(self, id):
+    def get_exchanges_by_id(self, id, **kwargs):
         """Get exchange volume in BTC and tickers"""
 
         api_url = '{0}exchanges/{1}'.format(self.api_base_url, id)
+        api_url = self.__api_url_params(api_url, kwargs)
 
         return self.__request(api_url)
 
@@ -279,17 +289,19 @@ class CoinGeckoAPI:
 
         return self.__request(api_url)
 
-    def get_indexes_by_id(self, id):
+    def get_indexes_by_id(self, id, **kwargs):
         """Get market index by id"""
 
         api_url = '{0}indexes/{1}'.format(self.api_base_url, id)
+        api_url = self.__api_url_params(api_url, kwargs)
 
         return self.__request(api_url)
 
-    def get_indexes_list(self):
+    def get_indexes_list(self, **kwargs):
         """List market indexes id and name"""
 
         api_url = '{0}indexes/list'.format(self.api_base_url)
+        api_url = self.__api_url_params(api_url, kwargs)
 
         return self.__request(api_url)
 
@@ -318,10 +330,11 @@ class CoinGeckoAPI:
 
         return self.__request(api_url)
 
-    def get_derivatives_exchanges_list(self):
+    def get_derivatives_exchanges_list(self, **kwargs):
         """List all derivative tickers"""
 
         api_url = '{0}derivatives/exchanges/list'.format(self.api_base_url)
+        api_url = self.__api_url_params(api_url, kwargs)
 
         return self.__request(api_url)
 
@@ -345,32 +358,36 @@ class CoinGeckoAPI:
 
         return self.__request(api_url)
 
-    def get_events_countries(self):
+    def get_events_countries(self, **kwargs):
         """Get list of event countries"""
 
         api_url = '{0}events/countries'.format(self.api_base_url)
+        api_url = self.__api_url_params(api_url, kwargs)
 
         return self.__request(api_url)
 
-    def get_events_types(self):
+    def get_events_types(self, **kwargs):
         """Get list of event types"""
 
         api_url = '{0}events/types'.format(self.api_base_url)
+        api_url = self.__api_url_params(api_url, kwargs)
 
         return self.__request(api_url)
 
     # ---------- EXCHANGE-RATES ----------#
-    def get_exchange_rates(self):
+    def get_exchange_rates(self, **kwargs):
         """Get BTC-to-Currency exchange rates"""
 
         api_url = '{0}exchange_rates'.format(self.api_base_url)
+        api_url = self.__api_url_params(api_url, kwargs)
 
         return self.__request(api_url)
 
     # ---------- GLOBAL ----------#
-    def get_global(self):
+    def get_global(self, **kwargs):
         """Get cryptocurrency global data"""
 
         api_url = '{0}global'.format(self.api_base_url)
+        api_url = self.__api_url_params(api_url, kwargs)
 
         return self.__request(api_url)['data']
