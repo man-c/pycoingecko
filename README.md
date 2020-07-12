@@ -53,6 +53,7 @@ Usage examples:
 https://www.coingecko.com/api/docs/v3
 
 ### Endpoints included
+> :warning: **Endpoints documentation**: To make sure that your are using properly each endpoint you should check the [API documentation](https://www.coingecko.com/api/docs/v3). Return behaviour and parameters of the endpoints, such as *pagination*, might have changed. <br> Any **optional parameters** defined in CoinGecko API doc can be passed as function parameters using same parameters names with the API *(see Examples above)*.
 - *ping*
   - **/ping** (Check API server status)
     ```python 
@@ -76,7 +77,7 @@ https://www.coingecko.com/api/docs/v3
     ```python 
     cg.get_coins_list()
     ```
-  - **/coins/markets** (List all supported coins price, market cap, volume, and market related data (no pagination required))
+  - **/coins/markets** (List all supported coins price, market cap, volume, and market related data)
     ```python 
     cg.get_coins_markets()
     ```
@@ -130,7 +131,7 @@ https://www.coingecko.com/api/docs/v3
     ```python
     cg.get_exchanges_by_id()
     ```
-  - **/exchanges/{id}/tickers** (Get exchange tickers (paginated))
+  - **/exchanges/{id}/tickers** (Get exchange tickers (paginated, 100 tickers per page))
     ```python
     cg.get_exchanges_tickers_by_id()
     ```
