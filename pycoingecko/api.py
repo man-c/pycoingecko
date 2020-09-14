@@ -382,6 +382,15 @@ class CoinGeckoAPI:
         api_url = self.__api_url_params(api_url, kwargs)
 
         return self.__request(api_url)
+    
+    # ---------- TRENDING ----------#
+    def get_trending(self, **kwargs):
+        """Get top 7 trending coin searches"""
+
+        api_url = '{0}search/trending'.format(self.api_base_url)
+        api_url = self.__api_url_params(api_url, kwargs)
+
+        return self.__request(api_url)
 
     # ---------- GLOBAL ----------#
     def get_global(self, **kwargs):
