@@ -175,6 +175,15 @@ class CoinGeckoAPI:
         api_url = self.__api_url_params(api_url, kwargs)
 
         return self.__request(api_url)
+    
+    @list_args_to_comma_separated
+    def get_coin_ohlc_by_id(self, id, vs_currency, days, **kwargs):
+        """Get coin's OHLC"""
+
+        api_url = '{0}coins/{1}/ohlc?vs_currency={2}&days={3}'.format(self.api_base_url, id, vs_currency, days)
+        api_url = self.__api_url_params(api_url, kwargs)
+
+        return self.__request(api_url)
 
     # ---------- Contract ----------#
     @list_args_to_comma_separated
