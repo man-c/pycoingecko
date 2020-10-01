@@ -105,6 +105,10 @@ https://www.coingecko.com/api/docs/v3
     ```python
     cg.get_coin_status_updates_by_id()
     ```
+  - **/coins/{id}/ohlc** (Get coin's OHLC (beta))
+    ```python
+    cg.get_coin_ohlc_by_id()
+    ```
 - *contract*
   - **/coins/{id}/contract/{contract_address}** (Get coin info from contract address)
     ```python
