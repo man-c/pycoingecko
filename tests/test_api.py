@@ -513,7 +513,7 @@ class TestWrapper(unittest.TestCase):
 
     #---------- /search/trending ----------#
     @responses.activate
-    def test_failed_get_trending(self):
+    def test_failed_search_get_trending(self):
         # Arrange
         responses.add(responses.GET, 'https://api.coingecko.com/api/v3/search/trending',
                           status = 404)
@@ -521,11 +521,11 @@ class TestWrapper(unittest.TestCase):
 
         # Act Assert
         with pytest.raises(HTTPError) as HE:
-            CoinGeckoAPI().get_trending()
+            CoinGeckoAPI().get_search_trending()
 
 
     @responses.activate
-    def test_get_trending(self):
+    def test_get_search_trending(self):
         # Arrange
         json_response = { "coins": [{"item": {"id":"iris-network", "name":"IRISnet", "symbol":"IRIS", "market_cap_rank":159, "thumb":"/coins/images/5135/thumb/IRIS.png", "score":0}}, {"item": {"id":"hegic", "name":"Hegic", "symbol":"HEGIC", "market_cap_rank":386, "thumb":"/coins/images/12454/thumb/Hegic.png", "score":1}}, {"item": {"id":"moonswap", "name":"MoonSwap", "symbol":"MOON", "market_cap_rank":373, "thumb":"/coins/images/12441/thumb/moon.jpg", "score":2}}, {"item": {"id":"yfv-finance", "name":"YFValue", "symbol":"YFV", "market_cap_rank":179, "thumb":"/coins/images/12198/thumb/yfv.jpg", "score":3}}, {"item": {"id":"yffi-finance", "name":"yffi finance", "symbol":"YFFI", "market_cap_rank":531, "thumb":"/coins/images/11940/thumb/yffi-finance.jpg", "score":4}}, {"item": {"id":"relevant", "name":"Relevant", "symbol":"REL", "market_cap_rank":915, "thumb":"/coins/images/11586/thumb/Relevant.png", "score":5}}, {"item": {"id":"sake-token", "name":"SakeToken", "symbol":"SAKE", "market_cap_rank":503, "thumb":"/coins/images/12428/thumb/sake.png", "score":6}}], "exchanges": [] }
 
@@ -533,7 +533,7 @@ class TestWrapper(unittest.TestCase):
                           json = json_response, status = 200)
 
         # Act
-        response = CoinGeckoAPI().get_trending()
+        response = CoinGeckoAPI().get_search_trending()
 
         ## Assert
         assert response == json_response
