@@ -1,4 +1,10 @@
 
+1.4.0 / 2020-10-03
+==================
+
+  * added new endpoints (/coins/{id}/ohlc, /search/trending, /global/decentralized_finance_defi)
+  * updated tests
+
 1.3.0 / 2020-07-12
 ==================
 
