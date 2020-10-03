@@ -23,7 +23,7 @@ cg = CoinGeckoAPI()
 ```
 
 ### Examples
-The required parameters for each endpoint are defined as required (mandatory) parameters for the coresponding functions.
+The required parameters for each endpoint are defined as required (mandatory) parameters for the corresponding functions.
 **Any optional parameters** can be also passed using same names, as defined in CoinGecko API doc (https://www.coingecko.com/api/docs/v3)
 
 *Lists are also supported as input for multiple-valued comma-separated parameters (e.g. see /simple/price usage examples).*
@@ -44,7 +44,7 @@ Usage examples:
 >>> cg.get_price(ids=['bitcoin', 'litecoin', 'ethereum'], vs_currencies=['usd', 'eur'])
 {'bitcoin': {'usd': 3459.39, 'eur': 3019.33}, 'ethereum': {'usd': 106.91, 'eur': 93.31}, 'litecoin': {'usd': 32.72, 'eur': 28.56}}
 
-# optional parameteres can be passed as defined in the API doc (https://www.coingecko.com/api/docs/v3)
+# optional parameters can be passed as defined in the API doc (https://www.coingecko.com/api/docs/v3)
 >>> cg.get_price(ids='bitcoin', vs_currencies='usd', include_market_cap='true', include_24hr_vol='true', include_24hr_change='true', include_last_updated_at='true')
 {'bitcoin': {'usd': 3458.74, 'usd_market_cap': 60574330199.29028, 'usd_24h_vol': 4182664683.6247883, 'usd_24h_change': 1.2295378479069035, 'last_updated_at': 1549071865}}
 ```
@@ -104,6 +104,10 @@ https://www.coingecko.com/api/docs/v3
   - **/coins/{id}/status_updates** (Get status updates for a given coin (beta))
     ```python
     cg.get_coin_status_updates_by_id()
+    ```
+  - **/coins/{id}/ohlc** (Get coin's OHLC (beta))
+    ```python
+    cg.get_coin_ohlc_by_id()
     ```
 - *contract*
   - **/coins/{id}/contract/{contract_address}** (Get coin info from contract address)
@@ -205,10 +209,19 @@ https://www.coingecko.com/api/docs/v3
     ```python
     cg.get_exchange_rates()
     ```
+- *trending*
+  - **/search/trending** (Get trending search coins (Top-7) on CoinGecko in the last 24 hours)
+    ```python
+    cg.get_search_trending()
+    ```
 - *global*
   - **/global** (Get cryptocurrency global data)
     ```python
     cg.get_global()
+    ```
+  - **/global/decentralized_finance_defi** (Get cryptocurrency global decentralized finance(defi) data)
+    ```python
+    cg.get_global_decentralized_finance_defi()
     ```
 
 ### Test

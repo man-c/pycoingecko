@@ -175,6 +175,15 @@ class CoinGeckoAPI:
         api_url = self.__api_url_params(api_url, kwargs)
 
         return self.__request(api_url)
+    
+    @list_args_to_comma_separated
+    def get_coin_ohlc_by_id(self, id, vs_currency, days, **kwargs):
+        """Get coin's OHLC"""
+
+        api_url = '{0}coins/{1}/ohlc?vs_currency={2}&days={3}'.format(self.api_base_url, id, vs_currency, days)
+        api_url = self.__api_url_params(api_url, kwargs)
+
+        return self.__request(api_url)
 
     # ---------- Contract ----------#
     @list_args_to_comma_separated
@@ -382,6 +391,15 @@ class CoinGeckoAPI:
         api_url = self.__api_url_params(api_url, kwargs)
 
         return self.__request(api_url)
+    
+    # ---------- TRENDING ----------#
+    def get_search_trending(self, **kwargs):
+        """Get top 7 trending coin searches"""
+
+        api_url = '{0}search/trending'.format(self.api_base_url)
+        api_url = self.__api_url_params(api_url, kwargs)
+
+        return self.__request(api_url)
 
     # ---------- GLOBAL ----------#
     def get_global(self, **kwargs):
@@ -391,3 +409,12 @@ class CoinGeckoAPI:
         api_url = self.__api_url_params(api_url, kwargs)
 
         return self.__request(api_url)['data']
+
+    def get_global_decentralized_finance_defi(self, **kwargs):
+        """Get cryptocurrency global decentralized finance(defi) data"""
+
+        api_url = '{0}global/decentralized_finance_defi'.format(self.api_base_url)
+        api_url = self.__api_url_params(api_url, kwargs)
+
+        return self.__request(api_url)['data']
+

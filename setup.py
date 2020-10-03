@@ -3,7 +3,7 @@ import setuptools
 
 setuptools.setup(
     name='pycoingecko',
-    version='1.3.0',
+    version='1.4.0',
     packages=['pycoingecko',],
     license='MIT',
     description = 'Python wrapper around the CoinGecko API',
