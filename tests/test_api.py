@@ -1,4 +1,5 @@
 import pytest
+import requests.exceptions
 import responses
 import unittest
 import unittest.mock as mock
@@ -6,7 +7,13 @@ import unittest.mock as mock
 from pycoingecko import CoinGeckoAPI
 from requests.exceptions import HTTPError
 
+
 class TestWrapper(unittest.TestCase):
+
+    @responses.activate
+    def test_connection_error(self):
+        with pytest.raises(requests.exceptions.ConnectionError):
+            CoinGeckoAPI().ping()
 
     @responses.activate
     def test_failed_ping(self):
