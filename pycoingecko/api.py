@@ -1,6 +1,8 @@
 import json
 import requests
 
+from ratelimit import limits, sleep_and_retry
+
 from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.util.retry import Retry
 
@@ -9,6 +11,8 @@ from .utils import list_args_to_comma_separated
 
 class CoinGeckoAPI:
     __API_URL_BASE = 'https://api.coingecko.com/api/v3/'
+    __API_RATE_LIMIT = 100
+    __API_RATE_DURATION = 60
 
     def __init__(self, api_base_url=__API_URL_BASE):
         self.api_base_url = api_base_url
@@ -18,6 +22,8 @@ class CoinGeckoAPI:
         retries = Retry(total=5, backoff_factor=0.5, status_forcelist=[502, 503, 504])
         self.session.mount('http://', HTTPAdapter(max_retries=retries))
 
+    @sleep_and_retry
+    @limits(calls=__API_RATE_LIMIT, period=__API_RATE_DURATION)
     def __request(self, url):
         # print(url)
         try:
@@ -175,7 +181,7 @@ class CoinGeckoAPI:
         api_url = self.__api_url_params(api_url, kwargs)
 
         return self.__request(api_url)
-    
+
     @list_args_to_comma_separated
     def get_coin_ohlc_by_id(self, id, vs_currency, days, **kwargs):
         """Get coin's OHLC"""
@@ -391,7 +397,7 @@ class CoinGeckoAPI:
         api_url = self.__api_url_params(api_url, kwargs)
 
         return self.__request(api_url)
-    
+
     # ---------- TRENDING ----------#
     def get_search_trending(self, **kwargs):
         """Get top 7 trending coin searches"""
@@ -417,4 +423,3 @@ class CoinGeckoAPI:
         api_url = self.__api_url_params(api_url, kwargs)
 
         return self.__request(api_url)['data']
-
