@@ -1,4 +1,9 @@
 
+1.4.1 / 2021-03-30
+==================
+
+  * fixed __api_url_params issue for optional parametes of few endpoints (such as /coins/{id}/market_chart)
+
 1.4.0 / 2020-10-03
 ==================
 
