@@ -37,9 +37,13 @@ class CoinGeckoAPI:
             #    pass
             raise
 
-    def __api_url_params(self, api_url, params):
+    def __api_url_params(self, api_url, params, api_url_has_params=False):
         if params:
-            api_url += '&' if '?' in api_url else '?'
+            # if api_url contains already params and there is already a '?' avoid
+            # adding second '?' (api_url += '&' if '?' in api_url else '?'); causes
+            # issues with request parametes (usually for endpoints with required
+            # arguments passed as parameters)
+            api_url += '&' if api_url_has_params else '?'
             for key, value in params.items():
                 api_url += "{0}={1}&".format(key, value)
             api_url = api_url[:-1]
@@ -152,7 +156,7 @@ class CoinGeckoAPI:
         """Get historical market data include price, market cap, and 24h volume (granularity auto)"""
 
         api_url = '{0}coins/{1}/market_chart?vs_currency={2}&days={3}'.format(self.api_base_url, id, vs_currency, days)
-        api_url = self.__api_url_params(api_url, kwargs)
+        api_url = self.__api_url_params(api_url, kwargs, api_url_has_params=True)
 
         return self.__request(api_url)
 
@@ -163,7 +167,7 @@ class CoinGeckoAPI:
         api_url = '{0}coins/{1}/market_chart/range?vs_currency={2}&from={3}&to={4}'.format(self.api_base_url, id,
                                                                                            vs_currency, from_timestamp,
                                                                                            to_timestamp)
-        api_url = self.__api_url_params(api_url, kwargs)
+        api_url = self.__api_url_params(api_url, kwargs, api_url_has_params=True)
 
         return self.__request(api_url)
 
@@ -181,7 +185,7 @@ class CoinGeckoAPI:
         """Get coin's OHLC"""
 
         api_url = '{0}coins/{1}/ohlc?vs_currency={2}&days={3}'.format(self.api_base_url, id, vs_currency, days)
-        api_url = self.__api_url_params(api_url, kwargs)
+        api_url = self.__api_url_params(api_url, kwargs, api_url_has_params=True)
 
         return self.__request(api_url)
 
@@ -202,7 +206,7 @@ class CoinGeckoAPI:
         api_url = '{0}coins/{1}/contract/{2}/market_chart/?vs_currency={3}&days={4}'.format(self.api_base_url, id,
                                                                                             contract_address,
                                                                                             vs_currency, days)
-        api_url = self.__api_url_params(api_url, kwargs)
+        api_url = self.__api_url_params(api_url, kwargs, api_url_has_params=True)
 
         return self.__request(api_url)
 
