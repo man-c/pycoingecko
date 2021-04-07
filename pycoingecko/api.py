@@ -22,6 +22,10 @@ class CoinGeckoAPI:
         # print(url)
         try:
             response = self.session.get(url, timeout=self.request_timeout)
+        except requests.exceptions.RequestException:
+            raise
+
+        try:
             response.raise_for_status()
             content = json.loads(response.content.decode('utf-8'))
             return content
@@ -33,8 +37,7 @@ class CoinGeckoAPI:
             # if no json
             except json.decoder.JSONDecodeError:
                 pass
-            # except UnboundLocalError as e:
-            #    pass
+
             raise
 
     def __api_url_params(self, api_url, params, api_url_has_params=False):
