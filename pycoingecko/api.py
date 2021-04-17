@@ -6,7 +6,6 @@ from requests.packages.urllib3.util.retry import Retry
 
 from .utils import list_args_to_comma_separated
 
-
 class CoinGeckoAPI:
     __API_URL_BASE = 'https://api.coingecko.com/api/v3/'
 
@@ -45,6 +44,9 @@ class CoinGeckoAPI:
             # arguments passed as parameters)
             api_url += '&' if api_url_has_params else '?'
             for key, value in params.items():
+                if type(value) == bool:
+                    value = str(value).lower()
+
                 api_url += "{0}={1}&".format(key, value)
             api_url = api_url[:-1]
         return api_url
