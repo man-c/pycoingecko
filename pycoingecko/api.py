@@ -305,13 +305,13 @@ class CoinGeckoAPI:
 
         return self.__request(api_url)
 
-    def get_indexes_by_id(self, id, **kwargs):
-        """Get market index by id"""
+    #def get_indexes_by_id(self, id, **kwargs):
+    #    """Get market index by id"""
 
-        api_url = '{0}indexes/{1}'.format(self.api_base_url, id)
-        api_url = self.__api_url_params(api_url, kwargs)
+    #    api_url = '{0}indexes/{1}'.format(self.api_base_url, id)
+    #    api_url = self.__api_url_params(api_url, kwargs)
 
-        return self.__request(api_url)
+    #    return self.__request(api_url)
 
     def get_indexes_list(self, **kwargs):
         """List market indexes id and name"""
