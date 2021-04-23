@@ -23,10 +23,14 @@ cg = CoinGeckoAPI()
 ```
 
 ### Examples
-The required parameters for each endpoint are defined as required (mandatory) parameters for the corresponding functions.
-**Any optional parameters** can be also passed using same names, as defined in CoinGecko API doc (https://www.coingecko.com/api/docs/v3)
+The required parameters for each endpoint are defined as required (mandatory) parameters for the corresponding functions.\
+**Any optional parameters** can be passed using same names, as defined in CoinGecko API doc (https://www.coingecko.com/api/docs/v3)
 
-*Lists are also supported as input for multiple-valued comma-separated parameters (e.g. see /simple/price usage examples).*
+For any parameter:
+- ***Lists** are supported as input for multiple-valued comma-separated parameters\
+  (e.g. see /simple/price usage examples).*
+- ***Booleans** are supported as input for boolean type parameters; they can be `str` ('true', 'false'') or `bool` (`True`, `False`)\
+  (e.g. see /simple/price usage examples).*
 
 Usage examples:
 ```python
@@ -46,6 +50,9 @@ Usage examples:
 
 # optional parameters can be passed as defined in the API doc (https://www.coingecko.com/api/docs/v3)
 >>> cg.get_price(ids='bitcoin', vs_currencies='usd', include_market_cap='true', include_24hr_vol='true', include_24hr_change='true', include_last_updated_at='true')
+{'bitcoin': {'usd': 3458.74, 'usd_market_cap': 60574330199.29028, 'usd_24h_vol': 4182664683.6247883, 'usd_24h_change': 1.2295378479069035, 'last_updated_at': 1549071865}}
+# OR (also booleans can be used for boolean type arguments)
+>>> cg.get_price(ids='bitcoin', vs_currencies='usd', include_market_cap=True, include_24hr_vol=True, include_24hr_change=True, include_last_updated_at=True)
 {'bitcoin': {'usd': 3458.74, 'usd_market_cap': 60574330199.29028, 'usd_24h_vol': 4182664683.6247883, 'usd_24h_change': 1.2295378479069035, 'last_updated_at': 1549071865}}
 ```
 
@@ -160,10 +167,6 @@ https://www.coingecko.com/api/docs/v3
   - **/indexes** (List all market indexes)
     ```python
     cg.get_indexes()
-    ```
-  - **/indexes/{id}** (Get market index by id)
-    ```python
-    cg.get_indexes_by_id()
     ```
   - **/indexes/list** (List market indexes id and name)
     ```python

@@ -1,4 +1,11 @@
 
+2.0.0 / 2021-04-23
+==================
+
+  * Allow Python Lists and Booleans for any endpoint parameter (list converted to comma-separated string & bool converted to lower case string)
+  * Removed /indexes/{id} endpoint (Get market index by id) -> cg.get_indexes_by_id()
+  * Improved request exceptions handling (Fixed unbound local exception on GET request failure)
+
 1.4.1 / 2021-03-30
 ==================
 

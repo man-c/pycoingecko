@@ -4,7 +4,7 @@ import requests
 from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.util.retry import Retry
 
-from .utils import list_args_to_comma_separated
+from .utils import func_args_preprocessing
 
 
 class CoinGeckoAPI:
@@ -22,6 +22,10 @@ class CoinGeckoAPI:
         # print(url)
         try:
             response = self.session.get(url, timeout=self.request_timeout)
+        except requests.exceptions.RequestException:
+            raise
+
+        try:
             response.raise_for_status()
             content = json.loads(response.content.decode('utf-8'))
             return content
@@ -33,8 +37,7 @@ class CoinGeckoAPI:
             # if no json
             except json.decoder.JSONDecodeError:
                 pass
-            # except UnboundLocalError as e:
-            #    pass
+
             raise
 
     def __api_url_params(self, api_url, params, api_url_has_params=False):
@@ -45,6 +48,9 @@ class CoinGeckoAPI:
             # arguments passed as parameters)
             api_url += '&' if api_url_has_params else '?'
             for key, value in params.items():
+                if type(value) == bool:
+                    value = str(value).lower()
+
                 api_url += "{0}={1}&".format(key, value)
             api_url = api_url[:-1]
         return api_url
@@ -57,7 +63,7 @@ class CoinGeckoAPI:
         return self.__request(api_url)
 
     # ---------- SIMPLE ----------#
-    @list_args_to_comma_separated
+    @func_args_preprocessing
     def get_price(self, ids, vs_currencies, **kwargs):
         """Get the current price of any cryptocurrencies in any other supported currencies that you need"""
 
@@ -71,7 +77,7 @@ class CoinGeckoAPI:
 
         return self.__request(api_url)
 
-    @list_args_to_comma_separated
+    @func_args_preprocessing
     def get_token_price(self, id, contract_addresses, vs_currencies, **kwargs):
         """Get the current price of any tokens on this coin (ETH only at this stage as per api docs) in any other supported currencies that you need"""
 
@@ -84,6 +90,7 @@ class CoinGeckoAPI:
         api_url = self.__api_url_params(api_url, kwargs)
         return self.__request(api_url)
 
+    @func_args_preprocessing
     def get_supported_vs_currencies(self, **kwargs):
         """Get list of supported_vs_currencies"""
 
@@ -93,7 +100,7 @@ class CoinGeckoAPI:
         return self.__request(api_url)
 
     # ---------- COINS ----------#
-    @list_args_to_comma_separated
+    @func_args_preprocessing
     def get_coins(self, **kwargs):
         """List all coins with data (name, price, market, developer, community, etc)"""
 
@@ -103,6 +110,7 @@ class CoinGeckoAPI:
 
         return self.__request(api_url)
 
+    @func_args_preprocessing
     def get_coins_list(self, **kwargs):
         """List all supported coins id, name and symbol (no pagination required)"""
 
@@ -111,7 +119,7 @@ class CoinGeckoAPI:
 
         return self.__request(api_url)
 
-    @list_args_to_comma_separated
+    @func_args_preprocessing
     def get_coins_markets(self, vs_currency, **kwargs):
         """List all supported coins price, market cap, volume, and market related data"""
 
@@ -122,7 +130,7 @@ class CoinGeckoAPI:
 
         return self.__request(api_url)
 
-    @list_args_to_comma_separated
+    @func_args_preprocessing
     def get_coin_by_id(self, id, **kwargs):
         """Get current data (name, price, market, ... including exchange tickers) for a coin"""
 
@@ -131,7 +139,7 @@ class CoinGeckoAPI:
 
         return self.__request(api_url)
 
-    @list_args_to_comma_separated
+    @func_args_preprocessing
     def get_coin_ticker_by_id(self, id, **kwargs):
         """Get coin tickers (paginated to 100 items)"""
 
@@ -140,7 +148,7 @@ class CoinGeckoAPI:
 
         return self.__request(api_url)
 
-    @list_args_to_comma_separated
+    @func_args_preprocessing
     def get_coin_history_by_id(self, id, date, **kwargs):
         """Get historical data (name, price, market, stats) at a given date for a coin"""
 
@@ -151,7 +159,7 @@ class CoinGeckoAPI:
 
         return self.__request(api_url)
 
-    @list_args_to_comma_separated
+    @func_args_preprocessing
     def get_coin_market_chart_by_id(self, id, vs_currency, days, **kwargs):
         """Get historical market data include price, market cap, and 24h volume (granularity auto)"""
 
@@ -160,7 +168,7 @@ class CoinGeckoAPI:
 
         return self.__request(api_url)
 
-    @list_args_to_comma_separated
+    @func_args_preprocessing
     def get_coin_market_chart_range_by_id(self, id, vs_currency, from_timestamp, to_timestamp, **kwargs):
         """Get historical market data include price, market cap, and 24h volume within a range of timestamp (granularity auto)"""
 
@@ -171,7 +179,7 @@ class CoinGeckoAPI:
 
         return self.__request(api_url)
 
-    @list_args_to_comma_separated
+    @func_args_preprocessing
     def get_coin_status_updates_by_id(self, id, **kwargs):
         """Get status updates for a given coin"""
 
@@ -180,7 +188,7 @@ class CoinGeckoAPI:
 
         return self.__request(api_url)
     
-    @list_args_to_comma_separated
+    @func_args_preprocessing
     def get_coin_ohlc_by_id(self, id, vs_currency, days, **kwargs):
         """Get coin's OHLC"""
 
@@ -190,7 +198,7 @@ class CoinGeckoAPI:
         return self.__request(api_url)
 
     # ---------- Contract ----------#
-    @list_args_to_comma_separated
+    @func_args_preprocessing
     def get_coin_info_from_contract_address_by_id(self, id, contract_address, **kwargs):
         """Get coin info from contract address"""
 
@@ -199,7 +207,7 @@ class CoinGeckoAPI:
 
         return self.__request(api_url)
 
-    @list_args_to_comma_separated
+    @func_args_preprocessing
     def get_coin_market_chart_from_contract_address_by_id(self, id, contract_address, vs_currency, days, **kwargs):
         """Get historical market data include price, market cap, and 24h volume (granularity auto) from a contract address"""
 
@@ -210,7 +218,7 @@ class CoinGeckoAPI:
 
         return self.__request(api_url)
 
-    @list_args_to_comma_separated
+    @func_args_preprocessing
     def get_coin_market_chart_range_from_contract_address_by_id(self, id, contract_address, vs_currency, from_timestamp,
                                                                 to_timestamp, **kwargs):
         """Get historical market data include price, market cap, and 24h volume within a range of timestamp (granularity auto) from a contract address"""
@@ -222,6 +230,7 @@ class CoinGeckoAPI:
         return self.__request(api_url)
 
     # ---------- EXCHANGES ----------#
+    @func_args_preprocessing
     def get_exchanges_list(self, **kwargs):
         """List all exchanges"""
 
@@ -230,6 +239,7 @@ class CoinGeckoAPI:
 
         return self.__request(api_url)
 
+    @func_args_preprocessing
     def get_exchanges_id_name_list(self, **kwargs):
         """List all supported markets id and name (no pagination required)"""
 
@@ -238,7 +248,7 @@ class CoinGeckoAPI:
 
         return self.__request(api_url)
 
-    @list_args_to_comma_separated
+    @func_args_preprocessing
     def get_exchanges_by_id(self, id, **kwargs):
         """Get exchange volume in BTC and tickers"""
 
@@ -247,7 +257,7 @@ class CoinGeckoAPI:
 
         return self.__request(api_url)
 
-    @list_args_to_comma_separated
+    @func_args_preprocessing
     def get_exchanges_tickers_by_id(self, id, **kwargs):
         """Get exchange tickers (paginated, 100 tickers per page)"""
 
@@ -256,7 +266,7 @@ class CoinGeckoAPI:
 
         return self.__request(api_url)
 
-    @list_args_to_comma_separated
+    @func_args_preprocessing
     def get_exchanges_status_updates_by_id(self, id, **kwargs):
         """Get status updates for a given exchange"""
 
@@ -265,7 +275,7 @@ class CoinGeckoAPI:
 
         return self.__request(api_url)
 
-    @list_args_to_comma_separated
+    @func_args_preprocessing
     def get_exchanges_volume_chart_by_id(self, id, days, **kwargs):
         """Get volume chart data for a given exchange"""
 
@@ -277,6 +287,7 @@ class CoinGeckoAPI:
         return self.__request(api_url)
 
     # ---------- FINANCE ----------#
+    @func_args_preprocessing
     def get_finance_platforms(self, **kwargs):
         """Get cryptocurrency finance platforms data"""
 
@@ -285,6 +296,7 @@ class CoinGeckoAPI:
 
         return self.__request(api_url)
 
+    @func_args_preprocessing
     def get_finance_products(self, **kwargs):
         """Get cryptocurrency finance products data"""
 
@@ -294,6 +306,7 @@ class CoinGeckoAPI:
         return self.__request(api_url)
 
     # ---------- INDEXES ----------#
+    @func_args_preprocessing
     def get_indexes(self, **kwargs):
         """List all market indexes"""
 
@@ -302,14 +315,16 @@ class CoinGeckoAPI:
 
         return self.__request(api_url)
 
-    def get_indexes_by_id(self, id, **kwargs):
-        """Get market index by id"""
+    #@func_args_preprocessing
+    #def get_indexes_by_id(self, id, **kwargs):
+    #    """Get market index by id"""
 
-        api_url = '{0}indexes/{1}'.format(self.api_base_url, id)
-        api_url = self.__api_url_params(api_url, kwargs)
+    #    api_url = '{0}indexes/{1}'.format(self.api_base_url, id)
+    #    api_url = self.__api_url_params(api_url, kwargs)
 
-        return self.__request(api_url)
+    #    return self.__request(api_url)
 
+    @func_args_preprocessing
     def get_indexes_list(self, **kwargs):
         """List market indexes id and name"""
 
@@ -319,6 +334,7 @@ class CoinGeckoAPI:
         return self.__request(api_url)
 
     # ---------- DERIVATIVES ----------#
+    @func_args_preprocessing
     def get_derivatives(self, **kwargs):
         """List all derivative tickers"""
 
@@ -327,6 +343,7 @@ class CoinGeckoAPI:
 
         return self.__request(api_url)
 
+    @func_args_preprocessing
     def get_derivatives_exchanges(self, **kwargs):
         """List all derivative tickers"""
 
@@ -335,6 +352,7 @@ class CoinGeckoAPI:
 
         return self.__request(api_url)
 
+    @func_args_preprocessing
     def get_derivatives_exchanges_by_id(self, id, **kwargs):
         """List all derivative tickers"""
 
@@ -343,6 +361,7 @@ class CoinGeckoAPI:
 
         return self.__request(api_url)
 
+    @func_args_preprocessing
     def get_derivatives_exchanges_list(self, **kwargs):
         """List all derivative tickers"""
 
@@ -352,7 +371,7 @@ class CoinGeckoAPI:
         return self.__request(api_url)
 
     # ---------- STATUS UPDATES ----------#
-    @list_args_to_comma_separated
+    @func_args_preprocessing
     def get_status_updates(self, **kwargs):
         """List all status_updates with data (description, category, created_at, user, user_title and pin)"""
 
@@ -362,7 +381,7 @@ class CoinGeckoAPI:
         return self.__request(api_url)
 
     # ---------- EVENTS ----------#
-    @list_args_to_comma_separated
+    @func_args_preprocessing
     def get_events(self, **kwargs):
         """Get events, paginated by 100"""
 
@@ -371,6 +390,7 @@ class CoinGeckoAPI:
 
         return self.__request(api_url)
 
+    @func_args_preprocessing
     def get_events_countries(self, **kwargs):
         """Get list of event countries"""
 
@@ -379,6 +399,7 @@ class CoinGeckoAPI:
 
         return self.__request(api_url)
 
+    @func_args_preprocessing
     def get_events_types(self, **kwargs):
         """Get list of event types"""
 
@@ -388,6 +409,7 @@ class CoinGeckoAPI:
         return self.__request(api_url)
 
     # ---------- EXCHANGE-RATES ----------#
+    @func_args_preprocessing
     def get_exchange_rates(self, **kwargs):
         """Get BTC-to-Currency exchange rates"""
 
@@ -397,6 +419,7 @@ class CoinGeckoAPI:
         return self.__request(api_url)
     
     # ---------- TRENDING ----------#
+    @func_args_preprocessing
     def get_search_trending(self, **kwargs):
         """Get top 7 trending coin searches"""
 
@@ -406,6 +429,7 @@ class CoinGeckoAPI:
         return self.__request(api_url)
 
     # ---------- GLOBAL ----------#
+    @func_args_preprocessing
     def get_global(self, **kwargs):
         """Get cryptocurrency global data"""
 
@@ -414,6 +438,7 @@ class CoinGeckoAPI:
 
         return self.__request(api_url)['data']
 
+    @func_args_preprocessing
     def get_global_decentralized_finance_defi(self, **kwargs):
         """Get cryptocurrency global decentralized finance(defi) data"""
 
