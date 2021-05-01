@@ -1,6 +1,5 @@
 # CoinGecko API wrapper
 [![PyPi Version](https://img.shields.io/pypi/v/pycoingecko.svg)](https://pypi.python.org/pypi/pycoingecko/)
-[![PyPI - Downloads](https://img.shields.io/pypi/dm/pycoingecko)](https://pypi.python.org/pypi/pycoingecko/)
 ![GitHub](https://img.shields.io/github/license/man-c/pycoingecko)
 
 Python3 wrapper around the [CoinGecko](https://www.coingecko.com/) API (V3)
