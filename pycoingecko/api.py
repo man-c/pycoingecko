@@ -229,6 +229,35 @@ class CoinGeckoAPI:
 
         return self.__request(api_url)
 
+    # ---------- ASSET PLATFORMS ----------#
+    @func_args_preprocessing
+    def get_asset_platforms(self, **kwargs):
+        """List all asset platforms (Blockchain networks)"""
+
+        api_url = '{0}asset_platforms'.format(self.api_base_url)
+        api_url = self.__api_url_params(api_url, kwargs)
+
+        return self.__request(api_url)
+
+    # ---------- CATEGORIES ----------#
+    @func_args_preprocessing
+    def get_coins_categories_list(self, **kwargs):
+        """List all categories"""
+
+        api_url = '{0}coins/categories/list'.format(self.api_base_url)
+        api_url = self.__api_url_params(api_url, kwargs)
+
+        return self.__request(api_url)
+
+    @func_args_preprocessing
+    def get_coins_categories(self, **kwargs):
+        """List all categories with market data"""
+
+        api_url = '{0}coins/categories'.format(self.api_base_url)
+        api_url = self.__api_url_params(api_url, kwargs)
+
+        return self.__request(api_url)
+
     # ---------- EXCHANGES ----------#
     @func_args_preprocessing
     def get_exchanges_list(self, **kwargs):
