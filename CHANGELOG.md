@@ -1,4 +1,9 @@
 
+2.1.0 / 2021-06-03
+==================
+
+  * Added asset_platforms (/asset_platforms) and categories (/coins/categories/list, coins/categories) endpoints
+
 2.0.0 / 2021-04-23
 ==================
 
