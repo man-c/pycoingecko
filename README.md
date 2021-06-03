@@ -130,6 +130,20 @@ https://www.coingecko.com/api/docs/v3
     ```python
     cg.get_coin_market_chart_range_from_contract_address_by_id()
     ```
+- *asset_platforms*
+  - **/asset_platforms** (List all asset platforms (Blockchain networks))
+    ```python
+    cg.get_asset_platforms()
+    ```
+- *categories*
+  - **/coins/categories/list** (List all categories)
+    ```python
+    cg.get_coins_categories_list()
+    ```
+  - **coins/categories** (List all categories with market data)
+    ```python
+    cg.get_coins_categories()
+    ```
 - *exchanges (beta)*
   - **/exchanges** (List all exchanges)
     ```python
