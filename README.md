@@ -144,7 +144,7 @@ https://www.coingecko.com/api/docs/v3
     ```python
     cg.get_coins_categories()
     ```
-- *exchanges (beta)*
+- *exchanges*
   - **/exchanges** (List all exchanges)
     ```python
     cg.get_exchanges_list()
@@ -169,7 +169,7 @@ https://www.coingecko.com/api/docs/v3
     ```python
     cg.get_exchanges_volume_chart_by_id()
     ```
-- *finance (beta)*
+- *finance*
   - **/finance_platforms** (List all finance platforms)
     ```python
     cg.get_finance_platforms()
@@ -178,7 +178,7 @@ https://www.coingecko.com/api/docs/v3
     ```python
     cg.get_finance_products()
     ```
-- *indexes (beta)*
+- *indexes*
   - **/indexes** (List all market indexes)
     ```python
     cg.get_indexes()
@@ -187,7 +187,7 @@ https://www.coingecko.com/api/docs/v3
     ```python
     cg.get_indexes_list()
     ```
-- *derivatives (beta)*
+- *derivatives*
   - **/derivatives** (List all derivative tickers)
     ```python
     cg.get_derivatives()
@@ -204,7 +204,7 @@ https://www.coingecko.com/api/docs/v3
     ```python
     cg.get_derivatives_exchanges_list()
     ```
-- status_updates (beta)
+- *status_updates*
   - **/status_updates** (List all status_updates with data (description, category, created_at, user, user_title and pin))
     ```python
     cg.get_status_updates()
@@ -240,6 +240,11 @@ https://www.coingecko.com/api/docs/v3
   - **/global/decentralized_finance_defi** (Get cryptocurrency global decentralized finance(defi) data)
     ```python
     cg.get_global_decentralized_finance_defi()
+    ```
+- *companies (beta)*
+  - **/companies/public_treasury/{coin_id}** (Get public companies data)
+    ```python
+    cg.get_companies_public_treasury_by_coin_id()
     ```
 
 ### Test

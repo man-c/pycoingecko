@@ -476,3 +476,13 @@ class CoinGeckoAPI:
 
         return self.__request(api_url)['data']
 
+    # ---------- COMPANIES ----------#
+    @func_args_preprocessing
+    def get_companies_public_treasury_by_coin_id(self, coin_id, **kwargs):
+        """Get public companies data"""
+
+        api_url = '{0}companies/public_treasury/{1}'.format(self.api_base_url, coin_id)
+        api_url = self.__api_url_params(api_url, kwargs)
+
+        return self.__request(api_url)
+
