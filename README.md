@@ -183,6 +183,10 @@ https://www.coingecko.com/api/docs/v3
     ```python
     cg.get_indexes()
     ```
+  - **/indexes/{market_id}/{id}** (Get market index by market id and index id)
+    ```python
+    cg.get_indexes_by_market_id_and_index_id()
+    ```
   - **/indexes/list** (List market indexes id and name)
     ```python
     cg.get_indexes_list()
