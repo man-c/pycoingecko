@@ -187,7 +187,7 @@ class CoinGeckoAPI:
         api_url = self.__api_url_params(api_url, kwargs)
 
         return self.__request(api_url)
-    
+
     @func_args_preprocessing
     def get_coin_ohlc_by_id(self, id, vs_currency, days, **kwargs):
         """Get coin's OHLC"""
@@ -344,14 +344,23 @@ class CoinGeckoAPI:
 
         return self.__request(api_url)
 
-    #@func_args_preprocessing
-    #def get_indexes_by_id(self, id, **kwargs):
+    # @func_args_preprocessing
+    # def get_indexes_by_id(self, id, **kwargs):
     #    """Get market index by id"""
-
+    #
     #    api_url = '{0}indexes/{1}'.format(self.api_base_url, id)
     #    api_url = self.__api_url_params(api_url, kwargs)
-
+    #
     #    return self.__request(api_url)
+
+    @func_args_preprocessing
+    def get_indexes_by_market_id_and_index_id(self, market_id, id, **kwargs):
+        """Get market index by market id and index id"""
+
+        api_url = '{0}indexes/{1}/{2}'.format(self.api_base_url, market_id, id)
+        api_url = self.__api_url_params(api_url, kwargs)
+
+        return self.__request(api_url)
 
     @func_args_preprocessing
     def get_indexes_list(self, **kwargs):
@@ -446,7 +455,7 @@ class CoinGeckoAPI:
         api_url = self.__api_url_params(api_url, kwargs)
 
         return self.__request(api_url)
-    
+
     # ---------- TRENDING ----------#
     @func_args_preprocessing
     def get_search_trending(self, **kwargs):
@@ -476,3 +485,12 @@ class CoinGeckoAPI:
 
         return self.__request(api_url)['data']
 
+    # ---------- COMPANIES ----------#
+    @func_args_preprocessing
+    def get_companies_public_treasury_by_coin_id(self, coin_id, **kwargs):
+        """Get public companies data"""
+
+        api_url = '{0}companies/public_treasury/{1}'.format(self.api_base_url, coin_id)
+        api_url = self.__api_url_params(api_url, kwargs)
+
+        return self.__request(api_url)
