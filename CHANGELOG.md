@@ -1,4 +1,9 @@
 
+2.2.0 / 2021-06-17
+==================
+
+  * Added /indexes/{market_id}/{id} and /companies/public_treasury/{coin_id} endpoints
+
 2.1.0 / 2021-06-03
 ==================
 
