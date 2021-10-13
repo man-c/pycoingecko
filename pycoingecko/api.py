@@ -16,7 +16,6 @@ class CoinGeckoAPI:
         self.request_timeout = 120
 
         self.session = requests.Session()
-
         retries = Retry(total=5, backoff_factor=0.5, status_forcelist=[502, 503, 504])
         self.session.mount('http://', HTTPAdapter(max_retries=retries))
 
