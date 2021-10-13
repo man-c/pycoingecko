@@ -51,8 +51,6 @@ class CoinGeckoAPI:
             # adding second '?' (api_url += '&' if '?' in api_url else '?'); causes
             # issues with request parametes (usually for endpoints with required
             # arguments passed as parameters)
-
-
             api_url += '&' if api_url_has_params else '?'
             for key, value in params.items():
                 if type(value) == bool:
