@@ -260,5 +260,15 @@ Run unit tests with:
 pytest tests
 ```
 
+## Extensions 
+
+If you are interested in an extended version of this api client that adds additional functionality like: 
+
+- Abstracting away complexities associated with server side rate limiting when sending many api requests. 
+- Page range queries. 
+- A roadmap for other future improvements. 
+
+Checkout [pycoingecko_extra](https://github.com/brycemorrow4564/pycoingecko-extra)!
+
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
