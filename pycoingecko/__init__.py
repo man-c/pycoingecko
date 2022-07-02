@@ -1,1 +1,1 @@
-from .api import CoinGeckoAPI 
+from .api import AsyncCoinGeckoAPI, CoinGeckoAPI 
