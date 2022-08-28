@@ -62,7 +62,7 @@ https://www.coingecko.com/api/docs/v3
 
 ### Endpoints included
 > :warning: **Endpoints documentation**: To make sure that your are using properly each endpoint you should check the [API documentation](https://www.coingecko.com/api/docs/v3). Return behaviour and parameters of the endpoints, such as *pagination*, might have changed. <br> Any **optional parameters** defined in CoinGecko API doc can be passed as function parameters using same parameters names with the API *(see Examples above)*.
-<details><summary>Ping</summary>
+<details><summary>ping</summary>
 <p>
 
 * **/ping** (Check API server status)
