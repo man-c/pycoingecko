@@ -10,8 +10,9 @@ from .utils import func_args_preprocessing
 class CoinGeckoAPI:
     __API_URL_BASE = 'https://api.coingecko.com/api/v3/'
 
-    def __init__(self, api_base_url=__API_URL_BASE, retries=5):
+    def __init__(self, api_base_url=__API_URL_BASE, api_key: str = '', retries=5):
         self.api_base_url = api_base_url
+        self.api_key = api_key
         self.request_timeout = 120
 
         self.session = requests.Session()
@@ -41,6 +42,10 @@ class CoinGeckoAPI:
             raise
 
     def __api_url_params(self, api_url, params, api_url_has_params=False):
+        # if using pro version of coingecko, inject key in every call
+        if len(self.api_key) > 0:
+            params['x_cg_pro_api_key'] = self.api_key
+
         if params:
             # if api_url contains already params and there is already a '?' avoid
             # adding second '?' (api_url += '&' if '?' in api_url else '?'); causes
