@@ -91,6 +91,11 @@ https://www.coingecko.com/api/docs/v3
 <details><summary>coins</summary>
 <p>
 
+* **/coins/list** (List all supported coins id, name and symbol (no pagination required))
+  ```python
+  cg.get_coins_list()
+  ```
+
 * **/coins/markets** (List all supported coins price, market cap, volume, and market related data)
   ```python 
   cg.get_coins_markets()
@@ -125,7 +130,7 @@ https://www.coingecko.com/api/docs/v3
   ```
 </details>
 
-<details><summary>contracts</summary>
+<details><summary>contract</summary>
 <p>
 
 * **/coins/{id}/contract/{contract_address}** (Get coin info from contract address)
@@ -299,7 +304,11 @@ cg.get_indexes_list()
     ```python
     cg.get_global_decentralized_finance_defi()
     ```
-- *companies (beta)*
+</details>
+
+<details><summary>companies</summary>
+<p>
+
   - **/companies/public_treasury/{coin_id}** (Get public companies data)
     ```python
     cg.get_companies_public_treasury_by_coin_id()
@@ -308,10 +317,18 @@ cg.get_indexes_list()
 
 ### Test
 
+#### Installation
+Install required packages for testing using:
+```bash
+pip install pytest responses
+```
+
+#### Usage
+
 Run unit tests with:
 
 ```
-# after installing pytest using pip3
+# after installing pytest and responses using pip3
 pytest tests
 ```
 
