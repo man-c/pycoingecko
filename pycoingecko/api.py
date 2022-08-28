@@ -9,10 +9,14 @@ from .utils import func_args_preprocessing
 
 class CoinGeckoAPI:
     __API_URL_BASE = 'https://api.coingecko.com/api/v3/'
+    __PRO_API_URL_BASE = 'https://pro-api.coingecko.com/api/v3/'
 
     def __init__(self, api_base_url=__API_URL_BASE, api_key: str = '', retries=5):
-        self.api_base_url = api_base_url
         self.api_key = api_key
+        if api_key:
+            self.api_base_url = self.__PRO_API_URL_BASE
+        else:
+            self.api_base_url = self.__API_URL_BASE
         self.request_timeout = 120
 
         self.session = requests.Session()
@@ -61,10 +65,12 @@ class CoinGeckoAPI:
         return api_url
 
     # ---------- PING ----------#
-    def ping(self):
+    def ping(self, **kwargs):
         """Check API server status"""
 
         api_url = '{0}ping'.format(self.api_base_url)
+        api_url = self.__api_url_params(api_url, kwargs)
+
         return self.__request(api_url)
 
     # ---------- SIMPLE ----------#
