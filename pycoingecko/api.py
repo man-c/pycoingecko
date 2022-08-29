@@ -236,7 +236,7 @@ class CoinGeckoAPI:
 
         api_url = '{0}coins/{1}/contract/{2}/market_chart/range?vs_currency={3}&from={4}&to={5}'.format(
             self.api_base_url, id, contract_address, vs_currency, from_timestamp, to_timestamp)
-        api_url = self.__api_url_params(api_url, kwargs)
+        api_url = self.__api_url_params(api_url, kwargs, api_url_has_params=True)
 
         return self.__request(api_url)
 
