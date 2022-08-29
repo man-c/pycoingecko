@@ -24,7 +24,7 @@ class CoinGeckoAPI:
         self.session.mount('https://', HTTPAdapter(max_retries=retries))
 
     def __request(self, url):
-        # print(url)
+        print(url)
         try:
             response = self.session.get(url, timeout=self.request_timeout)
         except requests.exceptions.RequestException:
@@ -464,6 +464,16 @@ class CoinGeckoAPI:
 
         api_url = '{0}exchange_rates'.format(self.api_base_url)
         api_url = self.__api_url_params(api_url, kwargs)
+
+        return self.__request(api_url)
+
+    # ---------- SEARCH ----------#
+    @func_args_preprocessing
+    def search(self, query, **kwargs):
+        """Search for coins, categories and markets on CoinGecko"""
+
+        api_url = '{0}search?query={1}'.format(self.api_base_url, query)
+        api_url = self.__api_url_params(api_url, kwargs, api_url_has_params=True)
 
         return self.__request(api_url)
 

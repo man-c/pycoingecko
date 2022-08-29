@@ -284,6 +284,15 @@ cg.get_indexes_list()
   ```
 </details>
 
+<details><summary>search</summary>
+<p>
+
+* **/search** (Search for coins, categories and markets on CoinGecko)
+  ```python
+  cg.search()
+  ```
+</details>
+
 <details><summary>trending</summary>
 <p>
 
