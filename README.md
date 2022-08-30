@@ -18,14 +18,21 @@ python3 setup.py install
 
 ### Usage
 
+For **free API**:
 ```python
 from pycoingecko import CoinGeckoAPI
 cg = CoinGeckoAPI()
 ```
 
+For users with **Pro API** Key:
+```python
+from pycoingecko import CoinGeckoAPI
+cg = pycoingecko.CoinGeckoAPI(api_key='YOUR_API_KEY')
+```
+
 ### Examples
 The required parameters for each endpoint are defined as required (mandatory) parameters for the corresponding functions.\
-**Any optional parameters** can be passed using same names, as defined in CoinGecko API doc (https://www.coingecko.com/api/docs/v3)
+**Any optional parameters** can be passed using same names, as defined in CoinGecko API doc (https://www.coingecko.com/en/api/documentation)
 
 For any parameter:
 - ***Lists** are supported as input for multiple-valued comma-separated parameters\
@@ -58,10 +65,10 @@ Usage examples:
 ```
 
 ### API documentation
-https://www.coingecko.com/api/docs/v3
+https://www.coingecko.com/en/api/documentation
 
 ### Endpoints included
-> :warning: **Endpoints documentation**: To make sure that your are using properly each endpoint you should check the [API documentation](https://www.coingecko.com/api/docs/v3). Return behaviour and parameters of the endpoints, such as *pagination*, might have changed. <br> Any **optional parameters** defined in CoinGecko API doc can be passed as function parameters using same parameters names with the API *(see Examples above)*.
+> :warning: **Endpoints documentation**: To make sure that you are using properly each endpoint you should check the [API documentation](https://www.coingecko.com/en/api/documentation). Return behaviour and parameters of the endpoints, such as *pagination*, might have changed. <br> Any **optional parameters** defined in CoinGecko API doc can be passed as function parameters using same parameters names with the API *(see Examples above)*.
 <details><summary>ping</summary>
 <p>
 

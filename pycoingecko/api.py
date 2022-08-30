@@ -24,7 +24,7 @@ class CoinGeckoAPI:
         self.session.mount('https://', HTTPAdapter(max_retries=retries))
 
     def __request(self, url):
-        print(url)
+        # print(url)
         try:
             response = self.session.get(url, timeout=self.request_timeout)
         except requests.exceptions.RequestException:
@@ -46,8 +46,8 @@ class CoinGeckoAPI:
             raise
 
     def __api_url_params(self, api_url, params, api_url_has_params=False):
-        # if using pro version of coingecko, inject key in every call
-        if len(self.api_key) > 0:
+        # if using pro version of CoinGecko, inject key in every call
+        if self.api_key:
             params['x_cg_pro_api_key'] = self.api_key
 
         if params:
