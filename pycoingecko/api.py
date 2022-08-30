@@ -9,9 +9,14 @@ from .utils import func_args_preprocessing
 
 class CoinGeckoAPI:
     __API_URL_BASE = 'https://api.coingecko.com/api/v3/'
+    __PRO_API_URL_BASE = 'https://pro-api.coingecko.com/api/v3/'
 
-    def __init__(self, api_base_url=__API_URL_BASE, retries=5):
-        self.api_base_url = api_base_url
+    def __init__(self, api_base_url=__API_URL_BASE, api_key: str = '', retries=5):
+        self.api_key = api_key
+        if api_key:
+            self.api_base_url = self.__PRO_API_URL_BASE
+        else:
+            self.api_base_url = self.__API_URL_BASE
         self.request_timeout = 120
 
         self.session = requests.Session()
@@ -41,6 +46,10 @@ class CoinGeckoAPI:
             raise
 
     def __api_url_params(self, api_url, params, api_url_has_params=False):
+        # if using pro version of CoinGecko, inject key in every call
+        if self.api_key:
+            params['x_cg_pro_api_key'] = self.api_key
+
         if params:
             # if api_url contains already params and there is already a '?' avoid
             # adding second '?' (api_url += '&' if '?' in api_url else '?'); causes
@@ -56,10 +65,12 @@ class CoinGeckoAPI:
         return api_url
 
     # ---------- PING ----------#
-    def ping(self):
+    def ping(self, **kwargs):
         """Check API server status"""
 
         api_url = '{0}ping'.format(self.api_base_url)
+        api_url = self.__api_url_params(api_url, kwargs)
+
         return self.__request(api_url)
 
     # ---------- SIMPLE ----------#
@@ -225,7 +236,7 @@ class CoinGeckoAPI:
 
         api_url = '{0}coins/{1}/contract/{2}/market_chart/range?vs_currency={3}&from={4}&to={5}'.format(
             self.api_base_url, id, contract_address, vs_currency, from_timestamp, to_timestamp)
-        api_url = self.__api_url_params(api_url, kwargs)
+        api_url = self.__api_url_params(api_url, kwargs, api_url_has_params=True)
 
         return self.__request(api_url)
 
@@ -453,6 +464,16 @@ class CoinGeckoAPI:
 
         api_url = '{0}exchange_rates'.format(self.api_base_url)
         api_url = self.__api_url_params(api_url, kwargs)
+
+        return self.__request(api_url)
+
+    # ---------- SEARCH ----------#
+    @func_args_preprocessing
+    def search(self, query, **kwargs):
+        """Search for coins, categories and markets on CoinGecko"""
+
+        api_url = '{0}search?query={1}'.format(self.api_base_url, query)
+        api_url = self.__api_url_params(api_url, kwargs, api_url_has_params=True)
 
         return self.__request(api_url)
 

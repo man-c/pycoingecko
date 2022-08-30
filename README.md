@@ -18,14 +18,21 @@ python3 setup.py install
 
 ### Usage
 
+For **free API**:
 ```python
 from pycoingecko import CoinGeckoAPI
 cg = CoinGeckoAPI()
 ```
 
+For users with **Pro API** Key:
+```python
+from pycoingecko import CoinGeckoAPI
+cg = pycoingecko.CoinGeckoAPI(api_key='YOUR_API_KEY')
+```
+
 ### Examples
 The required parameters for each endpoint are defined as required (mandatory) parameters for the corresponding functions.\
-**Any optional parameters** can be passed using same names, as defined in CoinGecko API doc (https://www.coingecko.com/api/docs/v3)
+**Any optional parameters** can be passed using same names, as defined in CoinGecko API doc (https://www.coingecko.com/en/api/documentation).
 
 For any parameter:
 - ***Lists** are supported as input for multiple-valued comma-separated parameters\
@@ -58,10 +65,10 @@ Usage examples:
 ```
 
 ### API documentation
-https://www.coingecko.com/api/docs/v3
+https://www.coingecko.com/en/api/documentation
 
 ### Endpoints included
-> :warning: **Endpoints documentation**: To make sure that your are using properly each endpoint you should check the [API documentation](https://www.coingecko.com/api/docs/v3). Return behaviour and parameters of the endpoints, such as *pagination*, might have changed. <br> Any **optional parameters** defined in CoinGecko API doc can be passed as function parameters using same parameters names with the API *(see Examples above)*.
+> :warning: **Endpoints documentation**: To make sure that you are using properly each endpoint you should check the [API documentation](https://www.coingecko.com/en/api/documentation). Return behaviour and parameters of the endpoints, such as *pagination*, might have changed. <br> Any **optional parameters** defined in CoinGecko API doc can be passed as function parameters using same parameters names with the API *(see Examples above)*.
 <details><summary>ping</summary>
 <p>
 
@@ -90,6 +97,11 @@ https://www.coingecko.com/api/docs/v3
 
 <details><summary>coins</summary>
 <p>
+
+* **/coins/list** (List all supported coins id, name and symbol (no pagination required))
+  ```python
+  cg.get_coins_list()
+  ```
 
 * **/coins/markets** (List all supported coins price, market cap, volume, and market related data)
   ```python 
@@ -125,7 +137,7 @@ https://www.coingecko.com/api/docs/v3
   ```
 </details>
 
-<details><summary>contracts</summary>
+<details><summary>contract</summary>
 <p>
 
 * **/coins/{id}/contract/{contract_address}** (Get coin info from contract address)
@@ -279,6 +291,15 @@ cg.get_indexes_list()
   ```
 </details>
 
+<details><summary>search</summary>
+<p>
+
+* **/search** (Search for coins, categories and markets on CoinGecko)
+  ```python
+  cg.search()
+  ```
+</details>
+
 <details><summary>trending</summary>
 <p>
 
@@ -299,7 +320,11 @@ cg.get_indexes_list()
     ```python
     cg.get_global_decentralized_finance_defi()
     ```
-- *companies (beta)*
+</details>
+
+<details><summary>companies</summary>
+<p>
+
   - **/companies/public_treasury/{coin_id}** (Get public companies data)
     ```python
     cg.get_companies_public_treasury_by_coin_id()
@@ -308,10 +333,18 @@ cg.get_indexes_list()
 
 ### Test
 
+#### Installation
+Install required packages for testing using:
+```bash
+pip install pytest responses
+```
+
+#### Usage
+
 Run unit tests with:
 
 ```
-# after installing pytest using pip3
+# after installing pytest and responses using pip3
 pytest tests
 ```
 
