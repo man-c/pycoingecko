@@ -1,20 +1,29 @@
 
+2.3.0 / 2022-08-30
+==================
+
+  * added /search endpoint
+  * added CoinGecko Pro API support using api_key param in CoinGeckoAPI init (required in PRO version API calls)
+  * added ability to modify how many retries to do in requests session using param retries in CoinGeckoAPI init (default: retries=5)
+  * fixed session to mount retry adapter on https instead of http
+  * fixed params passed in get_coin_market_chart_range_from_contract_address_by_id for /coins/{id}/contract/{contract_address}/market_chart/range endpoint
+
 2.2.0 / 2021-06-17
 ==================
 
-  * Added /indexes/{market_id}/{id} and /companies/public_treasury/{coin_id} endpoints
+  * added /indexes/{market_id}/{id} and /companies/public_treasury/{coin_id} endpoints
 
 2.1.0 / 2021-06-03
 ==================
 
-  * Added asset_platforms (/asset_platforms) and categories (/coins/categories/list, coins/categories) endpoints
+  * added asset_platforms (/asset_platforms) and categories (/coins/categories/list, coins/categories) endpoints
 
 2.0.0 / 2021-04-23
 ==================
 
-  * Allow Python Lists and Booleans for any endpoint parameter (list converted to comma-separated string & bool converted to lower case string)
-  * Removed /indexes/{id} endpoint (Get market index by id) -> cg.get_indexes_by_id()
-  * Improved request exceptions handling (Fixed unbound local exception on GET request failure)
+  * allow Python Lists and Booleans for any endpoint parameter (list converted to comma-separated string & bool converted to lower case string)
+  * removed /indexes/{id} endpoint (Get market index by id) -> cg.get_indexes_by_id()
+  * improved request exceptions handling (Fixed unbound local exception on GET request failure)
 
 1.4.1 / 2021-03-30
 ==================
@@ -91,6 +100,6 @@
 ==================
 
   * use requests session to include retries
-  * Fixed bug when querying exchanges and added more unit tests
-  * First unit tests for coingecko wrappers
+  * fixed bug when querying exchanges and added more unit tests
+  * first unit tests for coingecko wrappers
   * initial commit

@@ -32,7 +32,7 @@ cg = pycoingecko.CoinGeckoAPI(api_key='YOUR_API_KEY')
 
 ### Examples
 The required parameters for each endpoint are defined as required (mandatory) parameters for the corresponding functions.\
-**Any optional parameters** can be passed using same names, as defined in CoinGecko API doc (https://www.coingecko.com/en/api/documentation)
+**Any optional parameters** can be passed using same names, as defined in CoinGecko API doc (https://www.coingecko.com/en/api/documentation).
 
 For any parameter:
 - ***Lists** are supported as input for multiple-valued comma-separated parameters\
