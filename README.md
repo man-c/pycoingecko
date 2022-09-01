@@ -7,7 +7,7 @@ Python3 wrapper around the [CoinGecko](https://www.coingecko.com/) API (V3)
 ### Installation
 PyPI
 ```bash
-pip install pycoingecko
+pip install -U pycoingecko
 ```
 or from source
 ```bash
@@ -127,10 +127,14 @@ https://www.coingecko.com/en/api/documentation
   ```python 
   cg.get_coin_market_chart_range_by_id()
   ```
-* **/coins/{id}/status_updates** (Get status updates for a given coin (beta))
-  ```python
-  cg.get_coin_status_updates_by_id()
-  ```
+
+[//]: # (* **/coins/{id}/status_updates** &#40;Get status updates for a given coin &#40;beta&#41;&#41;)
+
+[//]: # (  ```python)
+
+[//]: # (  cg.get_coin_status_updates_by_id&#40;&#41;)
+
+[//]: # (  ```)
 * **/coins/{id}/ohlc** (Get coin's OHLC (beta))
   ```python
   cg.get_coin_ohlc_by_id()
@@ -195,28 +199,42 @@ https://www.coingecko.com/en/api/documentation
   ```python
   cg.get_exchanges_tickers_by_id()
   ```
-* **/exchanges/{id}/status_updates** (Get status updates for a given exchange (beta))
-  ```python
-  cg.get_exchanges_status_updates_by_id()
-  ```
-* **/exchanges/{id}/volume_chart** (Get volume_chart data for a given exchange (beta))
+
+[//]: # (* **/exchanges/{id}/status_updates** &#40;Get status updates for a given exchange &#40;beta&#41;&#41;)
+
+[//]: # (  ```python)
+
+[//]: # (  cg.get_exchanges_status_updates_by_id&#40;&#41;)
+
+[//]: # (  ```)
+* **/exchanges/{id}/volume_chart** (Get volume_chart data for a given exchange)
   ```python
   cg.get_exchanges_volume_chart_by_id()
   ```
 </details>
 
-<details><summary>finance</summary>
-<p>
+[//]: # (<details><summary>finance</summary>)
 
-* **/finance_platforms** (List all finance platforms)
-  ```python
-  cg.get_finance_platforms()
-  ```
-* **/finance_products** (List all finance products)
-  ```python
-  cg.get_finance_products()
-  ```
-</details>
+[//]: # (<p>)
+
+[//]: # ()
+[//]: # (* **/finance_platforms** &#40;List all finance platforms&#41;)
+
+[//]: # (  ```python)
+
+[//]: # (  cg.get_finance_platforms&#40;&#41;)
+
+[//]: # (  ```)
+
+[//]: # (* **/finance_products** &#40;List all finance products&#41;)
+
+[//]: # (  ```python)
+
+[//]: # (  cg.get_finance_products&#40;&#41;)
+
+[//]: # (  ```)
+
+[//]: # (</details>)
 
 <details><summary>indexes</summary>
 <p>
@@ -256,31 +274,51 @@ cg.get_indexes_list()
   ```
 </details>
 
-<details><summary>status_updates</summary>
-<p>
+[//]: # (<details><summary>status_updates</summary>)
 
-* **/status_updates** (List all status_updates with data (description, category, created_at, user, user_title and pin))
-  ```python
-  cg.get_status_updates()
-  ```
-</details>
+[//]: # (<p>)
 
-<details><summary>events</summary>
-<p>
+[//]: # ()
+[//]: # (* **/status_updates** &#40;List all status_updates with data &#40;description, category, created_at, user, user_title and pin&#41;&#41;)
 
-* **/events** (Get events, paginated by 100)
-  ```python
-  cg.get_events()
-  ```
-* **/events/countries** (Get list of event countries)
-  ```python
-  cg.get_events_countries()
-  ```
-* **/events/types** (Get list of events types)
-  ```python
-  cg.get_events_types()
-  ```
-</details>
+[//]: # (  ```python)
+
+[//]: # (  cg.get_status_updates&#40;&#41;)
+
+[//]: # (  ```)
+
+[//]: # (</details>)
+
+[//]: # (<details><summary>events</summary>)
+
+[//]: # (<p>)
+
+[//]: # ()
+[//]: # (* **/events** &#40;Get events, paginated by 100&#41;)
+
+[//]: # (  ```python)
+
+[//]: # (  cg.get_events&#40;&#41;)
+
+[//]: # (  ```)
+
+[//]: # (* **/events/countries** &#40;Get list of event countries&#41;)
+
+[//]: # (  ```python)
+
+[//]: # (  cg.get_events_countries&#40;&#41;)
+
+[//]: # (  ```)
+
+[//]: # (* **/events/types** &#40;Get list of events types&#41;)
+
+[//]: # (  ```python)
+
+[//]: # (  cg.get_events_types&#40;&#41;)
+
+[//]: # (  ```)
+
+[//]: # (</details>)
 
 <details><summary>exchange_rates</summary>
 <p>

@@ -190,14 +190,14 @@ class CoinGeckoAPI:
 
         return self.__request(api_url)
 
-    @func_args_preprocessing
-    def get_coin_status_updates_by_id(self, id, **kwargs):
-        """Get status updates for a given coin"""
-
-        api_url = '{0}coins/{1}/status_updates'.format(self.api_base_url, id)
-        api_url = self.__api_url_params(api_url, kwargs)
-
-        return self.__request(api_url)
+    # @func_args_preprocessing
+    # def get_coin_status_updates_by_id(self, id, **kwargs):
+    #     """Get status updates for a given coin"""
+    #
+    #     api_url = '{0}coins/{1}/status_updates'.format(self.api_base_url, id)
+    #     api_url = self.__api_url_params(api_url, kwargs)
+    #
+    #     return self.__request(api_url)
 
     @func_args_preprocessing
     def get_coin_ohlc_by_id(self, id, vs_currency, days, **kwargs):
@@ -306,14 +306,14 @@ class CoinGeckoAPI:
 
         return self.__request(api_url)
 
-    @func_args_preprocessing
-    def get_exchanges_status_updates_by_id(self, id, **kwargs):
-        """Get status updates for a given exchange"""
-
-        api_url = '{0}exchanges/{1}/status_updates'.format(self.api_base_url, id)
-        api_url = self.__api_url_params(api_url, kwargs)
-
-        return self.__request(api_url)
+    # @func_args_preprocessing
+    # def get_exchanges_status_updates_by_id(self, id, **kwargs):
+    #     """Get status updates for a given exchange"""
+    #
+    #     api_url = '{0}exchanges/{1}/status_updates'.format(self.api_base_url, id)
+    #     api_url = self.__api_url_params(api_url, kwargs)
+    #
+    #     return self.__request(api_url)
 
     @func_args_preprocessing
     def get_exchanges_volume_chart_by_id(self, id, days, **kwargs):
@@ -326,24 +326,24 @@ class CoinGeckoAPI:
 
         return self.__request(api_url)
 
-    # ---------- FINANCE ----------#
-    @func_args_preprocessing
-    def get_finance_platforms(self, **kwargs):
-        """Get cryptocurrency finance platforms data"""
-
-        api_url = '{0}finance_platforms'.format(self.api_base_url)
-        api_url = self.__api_url_params(api_url, kwargs)
-
-        return self.__request(api_url)
-
-    @func_args_preprocessing
-    def get_finance_products(self, **kwargs):
-        """Get cryptocurrency finance products data"""
-
-        api_url = '{0}finance_products'.format(self.api_base_url)
-        api_url = self.__api_url_params(api_url, kwargs)
-
-        return self.__request(api_url)
+    # # ---------- FINANCE ----------#
+    # @func_args_preprocessing
+    # def get_finance_platforms(self, **kwargs):
+    #     """Get cryptocurrency finance platforms data"""
+    #
+    #     api_url = '{0}finance_platforms'.format(self.api_base_url)
+    #     api_url = self.__api_url_params(api_url, kwargs)
+    #
+    #     return self.__request(api_url)
+    #
+    # @func_args_preprocessing
+    # def get_finance_products(self, **kwargs):
+    #     """Get cryptocurrency finance products data"""
+    #
+    #     api_url = '{0}finance_products'.format(self.api_base_url)
+    #     api_url = self.__api_url_params(api_url, kwargs)
+    #
+    #     return self.__request(api_url)
 
     # ---------- INDEXES ----------#
     @func_args_preprocessing
@@ -419,43 +419,43 @@ class CoinGeckoAPI:
 
         return self.__request(api_url)
 
-    # ---------- STATUS UPDATES ----------#
-    @func_args_preprocessing
-    def get_status_updates(self, **kwargs):
-        """List all status_updates with data (description, category, created_at, user, user_title and pin)"""
+    # # ---------- STATUS UPDATES ----------#
+    # @func_args_preprocessing
+    # def get_status_updates(self, **kwargs):
+    #     """List all status_updates with data (description, category, created_at, user, user_title and pin)"""
+    #
+    #     api_url = '{0}status_updates'.format(self.api_base_url)
+    #     api_url = self.__api_url_params(api_url, kwargs)
+    #
+    #     return self.__request(api_url)
 
-        api_url = '{0}status_updates'.format(self.api_base_url)
-        api_url = self.__api_url_params(api_url, kwargs)
-
-        return self.__request(api_url)
-
-    # ---------- EVENTS ----------#
-    @func_args_preprocessing
-    def get_events(self, **kwargs):
-        """Get events, paginated by 100"""
-
-        api_url = '{0}events'.format(self.api_base_url)
-        api_url = self.__api_url_params(api_url, kwargs)
-
-        return self.__request(api_url)
-
-    @func_args_preprocessing
-    def get_events_countries(self, **kwargs):
-        """Get list of event countries"""
-
-        api_url = '{0}events/countries'.format(self.api_base_url)
-        api_url = self.__api_url_params(api_url, kwargs)
-
-        return self.__request(api_url)
-
-    @func_args_preprocessing
-    def get_events_types(self, **kwargs):
-        """Get list of event types"""
-
-        api_url = '{0}events/types'.format(self.api_base_url)
-        api_url = self.__api_url_params(api_url, kwargs)
-
-        return self.__request(api_url)
+    # # ---------- EVENTS ----------#
+    # @func_args_preprocessing
+    # def get_events(self, **kwargs):
+    #     """Get events, paginated by 100"""
+    #
+    #     api_url = '{0}events'.format(self.api_base_url)
+    #     api_url = self.__api_url_params(api_url, kwargs)
+    #
+    #     return self.__request(api_url)
+    #
+    # @func_args_preprocessing
+    # def get_events_countries(self, **kwargs):
+    #     """Get list of event countries"""
+    #
+    #     api_url = '{0}events/countries'.format(self.api_base_url)
+    #     api_url = self.__api_url_params(api_url, kwargs)
+    #
+    #     return self.__request(api_url)
+    #
+    # @func_args_preprocessing
+    # def get_events_types(self, **kwargs):
+    #     """Get list of event types"""
+    #
+    #     api_url = '{0}events/types'.format(self.api_base_url)
+    #     api_url = self.__api_url_params(api_url, kwargs)
+    #
+    #     return self.__request(api_url)
 
     # ---------- EXCHANGE-RATES ----------#
     @func_args_preprocessing
