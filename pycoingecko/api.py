@@ -11,7 +11,7 @@ class CoinGeckoAPI:
     __API_URL_BASE = 'https://api.coingecko.com/api/v3/'
     __PRO_API_URL_BASE = 'https://pro-api.coingecko.com/api/v3/'
 
-    def __init__(self, api_base_url=__API_URL_BASE, api_key: str = '', retries=5):
+    def __init__(self, api_key: str = '', retries=5):
         self.api_key = api_key
         if api_key:
             self.api_base_url = self.__PRO_API_URL_BASE
