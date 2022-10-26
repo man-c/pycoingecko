@@ -1,4 +1,10 @@
 
+3.1.0 / 2022-10-26
+==================
+
+  * added nfts (beta) endpoints (/nfts/list, /nfts/{id}, /nfts/{asset_platform_id}/contract/{contract_address})
+  * updated tests
+
 3.0.0 / 2022-09-01
 ==================
 
