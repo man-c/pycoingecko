@@ -419,6 +419,34 @@ class CoinGeckoAPI:
 
         return self.__request(api_url)
 
+    # ---------- NFTS (BETA) ----------#
+    @func_args_preprocessing
+    def get_nfts_list(self, **kwargs):
+        """List all supported NFT ids, paginated by 100 items per page, paginated to 100 items"""
+
+        api_url = '{0}nfts/list'.format(self.api_base_url)
+        api_url = self.__api_url_params(api_url, kwargs)
+
+        return self.__request(api_url)
+
+    @func_args_preprocessing
+    def get_nfts_by_id(self, id, **kwargs):
+        """Get current data (name, price_floor, volume_24h ...) for an NFT collection. native_currency (string) is only a representative of the currency"""
+
+        api_url = '{0}nfts/{1}'.format(self.api_base_url, id)
+        api_url = self.__api_url_params(api_url, kwargs)
+
+        return self.__request(api_url)
+
+    @func_args_preprocessing
+    def get_nfts_by_asset_platform_id_and_contract_address(self, asset_platform_id, contract_address, **kwargs):
+        """Get current data (name, price_floor, volume_24h ...) for an NFT collection. native_currency (string) is only a representative of the currency"""
+
+        api_url = '{0}nfts/{1}/contract/{2}'.format(self.api_base_url, asset_platform_id, contract_address)
+        api_url = self.__api_url_params(api_url, kwargs)
+
+        return self.__request(api_url)
+
     # # ---------- STATUS UPDATES ----------#
     # @func_args_preprocessing
     # def get_status_updates(self, **kwargs):

@@ -274,6 +274,23 @@ cg.get_indexes_list()
   ```
 </details>
 
+<details><summary>nfts (beta)</summary>
+<p>
+
+* **/nfts/list** (List all supported NFT ids, paginated by 100 items per page, paginated to 100 items)
+  ```python
+  cg.get_nfts_list()
+  ```
+* **/nfts/{id}** (Get current data (name, price_floor, volume_24h ...) for an NFT collection. native_currency (string) is only a representative of the currency.)
+  ```python
+  cg.get_nfts_by_id()
+  ```
+* **/nfts/{asset_platform_id}/contract/{contract_address}** (Get current data (name, price_floor, volume_24h ...) for an NFT collection. native_currency (string) is only a representative of the currency)
+  ```python
+  cg.get_nfts_collection_by_asset_platform_id_and_contract_address()
+  ```
+</details>
+
 [//]: # (<details><summary>status_updates</summary>)
 
 [//]: # (<p>)
@@ -360,7 +377,7 @@ cg.get_indexes_list()
     ```
 </details>
 
-<details><summary>companies</summary>
+<details><summary>companies (beta)</summary>
 <p>
 
   - **/companies/public_treasury/{coin_id}** (Get public companies data)
