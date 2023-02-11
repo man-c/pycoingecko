@@ -131,10 +131,13 @@ class CoinGeckoAPI:
         return self.__request(api_url)
 
     @func_args_preprocessing
-    def get_coins_markets(self, vs_currency, **kwargs):
+    def get_coins_markets(self, ids, vs_currencies, **kwargs):
         """List all supported coins price, market cap, volume, and market related data"""
 
-        kwargs['vs_currency'] = vs_currency
+        ids = ids.replace(' ', '')
+        kwargs['ids'] = ids
+        vs_currencies = vs_currencies.replace(' ', '')
+        kwargs['vs_currency'] = vs_currencies
 
         api_url = '{0}coins/markets'.format(self.api_base_url)
         api_url = self.__api_url_params(api_url, kwargs)
