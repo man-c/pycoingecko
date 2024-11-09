@@ -27,7 +27,7 @@ cg = CoinGeckoAPI()
 For users with **Pro API** Key:
 ```python
 from pycoingecko import CoinGeckoAPI
-cg = pycoingecko.CoinGeckoAPI(api_key='YOUR_API_KEY')
+cg = CoinGeckoAPI(api_key='YOUR_API_KEY')
 ```
 
 ### Examples
