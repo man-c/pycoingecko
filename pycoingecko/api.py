@@ -161,7 +161,10 @@ class CoinGeckoAPI:
 
     @func_args_preprocessing
     def get_coin_history_by_id(self, id, date, **kwargs):
-        """Get historical data (name, price, market, stats) at a given date for a coin"""
+        """Get historical data (name, price, market, stats) at a given date for a coin
+        
+        date string format: 'dd-mm-yyyy'
+        """
 
         kwargs['date'] = date
 
