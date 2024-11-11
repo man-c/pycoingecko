@@ -80,6 +80,15 @@ class CoinGeckoAPI:
 
         return self.__request(api_url, kwargs)
 
+    # ---------- KEY ----------#
+    def key(self, **kwargs):
+        """Check API server status"""
+
+        api_url = '{0}key'.format(self.api_base_url)
+        # api_url = self.__api_url_params(api_url, kwargs)
+
+        return self.__request(api_url, kwargs)
+
     # ---------- SIMPLE ----------#
     @func_args_preprocessing
     def get_price(self, ids, vs_currencies, **kwargs):
