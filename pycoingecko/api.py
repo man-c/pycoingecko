@@ -11,12 +11,22 @@ class CoinGeckoAPI:
     __API_URL_BASE = 'https://api.coingecko.com/api/v3/'
     __PRO_API_URL_BASE = 'https://pro-api.coingecko.com/api/v3/'
 
-    def __init__(self, api_key: str = '', retries=5):
-        self.api_key = api_key
+    def __init__(self, api_key: str = '', retries=5, demo_api_key: str = ''):
+
+        self.key_param = None
+        # self.headers = None
         if api_key:
             self.api_base_url = self.__PRO_API_URL_BASE
+            self.key_param = {'x_cg_pro_api_key': api_key}
+            # self.headers = {"accept": "application/json",
+            #                 "x-cg-pro-api-key": api_key}
         else:
             self.api_base_url = self.__API_URL_BASE
+            if demo_api_key:
+                self.key_param = {'x_cg_demo_api_key': demo_api_key}
+                # self.headers = {"accept": "application/json",
+                #                 "x-cg-demo-api-key": demo_api_key}
+
         self.request_timeout = 120
 
         self.session = requests.Session()
@@ -25,11 +35,10 @@ class CoinGeckoAPI:
 
     # def __request(self, url, params=None):
     def __request(self, url, params):
-        # if using pro version of CoinGecko, inject key in every call
-        if self.api_key:
-            params['x_cg_pro_api_key'] = self.api_key
+        # if using pro or demo version of CoinGecko with api key, inject key in every call
+        if self.key_param is not None:
+            params.update(self.key_param)
 
-        # print(url)
         try:
             response = self.session.get(url, params=params, timeout=self.request_timeout)
             # print(response.url)
