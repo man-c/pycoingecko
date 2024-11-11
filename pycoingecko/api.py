@@ -38,6 +38,7 @@ class CoinGeckoAPI:
 
         try:
             response.raise_for_status()
+            # self._headers = response.headers
             content = json.loads(response.content.decode('utf-8'))
             return content
         except Exception as e:
@@ -131,19 +132,21 @@ class CoinGeckoAPI:
     def get_coin_top_gainers_losers(self, vs_currency, **kwargs):
         """Get top gainers and losers"""
 
-        api_url = '{0}coins/top_gainers_losers?vs_currency={1}'.format(self.api_base_url, vs_currency)
-        api_url = self.__api_url_params(api_url, kwargs)
+        kwargs['vs_currency'] = vs_currency
 
-        return self.__request(api_url)
+        api_url = '{0}coins/top_gainers_losers'.format(self.api_base_url)
+        # api_url = self.__api_url_params(api_url, kwargs)
+
+        return self.__request(api_url, kwargs)
 
     @func_args_preprocessing
     def get_coins_list_new(self, **kwargs):
         """This endpoint allows you to query the latest 200 coins that recently listed on CoinGecko"""
 
         api_url = '{0}coins/list/new'.format(self.api_base_url)
-        api_url = self.__api_url_params(api_url, kwargs)
+        # api_url = self.__api_url_params(api_url, kwargs)
 
-        return self.__request(api_url)
+        return self.__request(api_url, kwargs)
 
     @func_args_preprocessing
     def get_coins_list(self, **kwargs):
@@ -252,9 +255,9 @@ class CoinGeckoAPI:
         kwargs['interval'] = interval
 
         api_url = '{0}coins/{1}/ohlc/range'.format(self.api_base_url, id)
-        api_url = self.__api_url_params(api_url, kwargs)
+        # api_url = self.__api_url_params(api_url, kwargs)
 
-        return self.__request(api_url)
+        return self.__request(api_url, kwargs)
 
     @func_args_preprocessing
     def get_coin_circulating_supply_chart(self, id, days, **kwargs):
@@ -263,9 +266,9 @@ class CoinGeckoAPI:
         kwargs['days'] = days
 
         api_url = '{0}coins/{1}/circulating_supply_chart'.format(self.api_base_url, id)
-        api_url = self.__api_url_params(api_url, kwargs)
+        # api_url = self.__api_url_params(api_url, kwargs)
 
-        return self.__request(api_url)
+        return self.__request(api_url, kwargs)
 
     @func_args_preprocessing
     def get_coin_circulating_supply_chart_range(self, id, from_timestamp, to_timestamp, **kwargs):
@@ -275,9 +278,9 @@ class CoinGeckoAPI:
         kwargs['to'] = to_timestamp
 
         api_url = '{0}coins/{1}/circulating_supply_chart/range'.format(self.api_base_url, id)
-        api_url = self.__api_url_params(api_url, kwargs)
+        # api_url = self.__api_url_params(api_url, kwargs)
 
-        return self.__request(api_url)
+        return self.__request(api_url, kwargs)
 
     @func_args_preprocessing
     def get_coin_total_supply_chart(self, id, days, **kwargs):
@@ -286,9 +289,9 @@ class CoinGeckoAPI:
         kwargs['days'] = days
 
         api_url = '{0}coins/{1}/total_supply_chart'.format(self.api_base_url, id)
-        api_url = self.__api_url_params(api_url, kwargs)
+        # api_url = self.__api_url_params(api_url, kwargs)
 
-        return self.__request(api_url)
+        return self.__request(api_url, kwargs)
 
     @func_args_preprocessing
     def get_coin_total_supply_chart_range(self, id, from_timestamp, to_timestamp, **kwargs):
@@ -298,9 +301,9 @@ class CoinGeckoAPI:
         kwargs['to'] = to_timestamp
 
         api_url = '{0}coins/{1}/total_supply_chart/range'.format(self.api_base_url, id)
-        api_url = self.__api_url_params(api_url, kwargs)
+        # api_url = self.__api_url_params(api_url, kwargs)
 
-        return self.__request(api_url)
+        return self.__request(api_url, kwargs)
 
     # ---------- Contract ----------#
     @func_args_preprocessing
@@ -352,13 +355,13 @@ class CoinGeckoAPI:
         return self.__request(api_url, kwargs)
 
     @func_args_preprocessing
-    def get_asset_platform_by_id(self, id, **kwargs):
+    def get_asset_platform_by_id(self, asset_platform_id, **kwargs):
         """ List all asset platforms (Blockchain networks) by platform id """
 
-        api_url = '{0}token_lists/{1}/all.json'.format(self.api_base_url, id)
-        api_url = self.__api_url_params(api_url, kwargs)
+        api_url = '{0}token_lists/{1}/all.json'.format(self.api_base_url, asset_platform_id)
+        # api_url = self.__api_url_params(api_url, kwargs)
 
-        return self.__request(api_url)
+        return self.__request(api_url, kwargs)
 
     # ---------- CATEGORIES ----------#
     @func_args_preprocessing
@@ -444,9 +447,9 @@ class CoinGeckoAPI:
         kwargs['to'] = to_timestamp
 
         api_url = '{0}exchanges/{1}/volume_chart/range'.format(self.api_base_url, id)
-        api_url = self.__api_url_params(api_url, kwargs)
+        # api_url = self.__api_url_params(api_url, kwargs)
 
-        return self.__request(api_url)
+        return self.__request(api_url, kwargs)
 
     # # ---------- FINANCE ----------#
     # @func_args_preprocessing
@@ -574,9 +577,9 @@ class CoinGeckoAPI:
         """This endpoint allows you to query all the supported NFT collections with floor price, market cap, volume and market related data on CoinGecko"""
 
         api_url = '{0}nfts/markets'.format(self.api_base_url)
-        api_url = self.__api_url_params(api_url, kwargs)
+        # api_url = self.__api_url_params(api_url, kwargs)
 
-        return self.__request(api_url)
+        return self.__request(api_url, kwargs)
 
     @func_args_preprocessing
     def get_nfts_market_chart_by_id(self, id, days, **kwargs):
@@ -585,9 +588,9 @@ class CoinGeckoAPI:
         kwargs['days'] = days
 
         api_url = '{0}nfts/{1}/market_chart'.format(self.api_base_url, id)
-        api_url = self.__api_url_params(api_url, kwargs)
+        # api_url = self.__api_url_params(api_url, kwargs)
 
-        return self.__request(api_url)
+        return self.__request(api_url, kwargs)
 
     @func_args_preprocessing
     def get_ntfs_market_chart_by_asset_platform_id_and_contract_address(self, asset_platform_id, contract_address, days, **kwargs):
@@ -596,18 +599,18 @@ class CoinGeckoAPI:
         kwargs['days'] = days
 
         api_url = '{0}nfts/{1}/contract/{2}/market_chart'.format(self.api_base_url, asset_platform_id, contract_address)
-        api_url = self.__api_url_params(api_url, kwargs)
+        # api_url = self.__api_url_params(api_url, kwargs)
 
-        return self.__request(api_url)
+        return self.__request(api_url, kwargs)
 
     @func_args_preprocessing
     def get_nfts_tickers(self, id, **kwargs):
         """This endpoint allows you to query the latest floor price and 24h volume of a NFT collection, on each NFT marketplace, e.g. OpenSea and LooksRare"""
 
         api_url = '{0}nfts/{1}/tickers'.format(self.api_base_url, id)
-        api_url = self.__api_url_params(api_url, kwargs)
+        # api_url = self.__api_url_params(api_url, kwargs)
 
-        return self.__request(api_url)
+        return self.__request(api_url, kwargs)
 
     # # ---------- STATUS UPDATES ----------#
     # @func_args_preprocessing
@@ -705,9 +708,9 @@ class CoinGeckoAPI:
         kwargs['days'] = days
 
         api_url = '{0}global/market_cap_chart'.format(self.api_base_url)
-        api_url = self.__api_url_params(api_url, kwargs)
+        # api_url = self.__api_url_params(api_url, kwargs)
 
-        return self.__request(api_url)
+        return self.__request(api_url, kwargs)
 
     # ---------- COMPANIES ----------#
     @func_args_preprocessing
