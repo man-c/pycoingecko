@@ -78,6 +78,15 @@ https://www.coingecko.com/en/api/documentation
   ```
 </details>
 
+<details><summary>key</summary>
+<p>
+
+* [Pro API] 💼 **/key** (Monitor your account's API usage, including rate limits, monthly total credits, remaining credits, and more)
+  ```python
+  cg.key()
+  ```
+</details>
+
 <details><summary>simple</summary>
 <p>
 
@@ -101,6 +110,16 @@ https://www.coingecko.com/en/api/documentation
 * **/coins/list** (List all supported coins id, name and symbol (no pagination required))
   ```python
   cg.get_coins_list()
+  ```
+
+* [Pro API] 💼 **/coins/top_gainers_losers** (Query the top 30 coins with largest price gain and loss by a specific time duration)
+  ```python
+  cg.get_coin_top_gainers_losers()
+  ```
+
+* [Pro API] 💼 **/coins/list/new** (Query the latest 200 coins that recently listed on CoinGecko)
+  ```python
+  cg.get_coins_list_new()
   ```
 
 * **/coins/markets** (List all supported coins price, market cap, volume, and market related data)
@@ -135,11 +154,38 @@ https://www.coingecko.com/en/api/documentation
 [//]: # (  cg.get_coin_status_updates_by_id&#40;&#41;)
 
 [//]: # (  ```)
-* **/coins/{id}/ohlc** (Get coin's OHLC (beta))
+* **/coins/{id}/ohlc** (Get the OHLC chart (Open, High, Low, Close) of a coin based on particular coin id)
   ```python
   cg.get_coin_ohlc_by_id()
   ```
+
+* [Pro API] 💼 **/coins/{id}/ohlc/range** (Get the OHLC chart (Open, High, Low, Close) of a coin within a range of timestamp based on particular coin id)
+  ```python
+  cg.get_coin_ohlc_by_id_range()
+  ```
+
+* [Pro API] 👑 **/coins/{id}/circulating_supply_chart** (Query historical circulating supply of a coin by number of days away from now based on provided coin id)
+  ```python
+  cg.get_coin_circulating_supply_chart()
+  ```
+
+* [Pro API] 👑 **/coins/{id}/circulating_supply_chart/range** (Query historical circulating supply of a coin, within a range of timestamp based on the provided coin id)
+  ```python
+  cg.get_coin_circulating_supply_chart_range()
+  ```
+
+* [Pro API] 👑 **/coins/{id}/total_supply_chart** (Query historical total supply of a coin by number of days away from now based on provided coin id)
+  ```python
+  cg.get_coin_total_supply_chart()
+  ```
+
+* [Pro API] 👑 **/coins/{id}/total_supply_chart/range** (Query historical total supply of a coin, within a range of timestamp based on the provided coin id)
+  ```python
+  cg.get_coin_total_supply_chart_range()
+  ```
+
 </details>
+
 
 <details><summary>contract</summary>
 <p>
@@ -165,6 +211,12 @@ https://www.coingecko.com/en/api/documentation
   ```python
   cg.get_asset_platforms()
   ```
+
+* [Pro API] 👑 **/token_lists/{asset_platform_id}/all.json** (Get full list of tokens of a blockchain network (asset platform) that is supported by Ethereum token list standard)
+  ```python
+  cg.get_asset_platform_by_id()
+  ```
+
 </details>
 
 <details><summary>categories</summary>
@@ -211,6 +263,12 @@ https://www.coingecko.com/en/api/documentation
   ```python
   cg.get_exchanges_volume_chart_by_id()
   ```
+
+* [Pro API] 💼 **/exchanges/{id}/volume_chart/range** (Query the historical volume chart data in BTC by specifying date range in UNIX based on exchange’s id)
+  ```python
+  cg.get_exchanges_volume_chart_by_id_within_time_range()
+  ```  
+
 </details>
 
 [//]: # (<details><summary>finance</summary>)
@@ -289,6 +347,27 @@ cg.get_indexes_list()
   ```python
   cg.get_nfts_collection_by_asset_platform_id_and_contract_address()
   ```
+
+* [Pro API] 💼 **/nfts/markets** (Query all the supported NFT collections with floor price, market cap, volume and market related data on CoinGecko)
+  ```python
+  cg.get_nfts_markets()
+  ```
+
+* [Pro API] 💼 **/nfts/{id}/market_chart** (Query historical market data of a NFT collection, including floor price, market cap, and 24h volume, by number of days away from now)
+  ```python
+  cg.get_nfts_market_chart_by_id()
+  ```
+
+* [Pro API] 💼 **/nfts/{asset_platform_id}/contract/{contract_address}/market_chart** (Query historical market data of a NFT collection, including floor price, market cap, and 24h volume, by number of days away from now based on the provided contract address)
+  ```python
+  cg.get_ntfs_market_chart_by_asset_platform_id_and_contract_address()
+  ```
+
+* [Pro API] 💼 **/nfts/{id}/tickers** (Query the latest floor price and 24h volume of a NFT collection, on each NFT marketplace, e.g. OpenSea and LooksRare)
+  ```python
+  cg.get_nfts_tickers_by_id()
+  ```
+
 </details>
 
 [//]: # (<details><summary>status_updates</summary>)
@@ -367,20 +446,32 @@ cg.get_indexes_list()
 <details><summary>global</summary>
 <p>
 
-  - **/global** (Get cryptocurrency global data)
+* **/global** (Get cryptocurrency global data)
     ```python
     cg.get_global()
     ```
-  - **/global/decentralized_finance_defi** (Get cryptocurrency global decentralized finance(defi) data)
+* **/global/decentralized_finance_defi** 
+  
+   _Get cryptocurrency global decentralized finance(defi) data_
     ```python
     cg.get_global_decentralized_finance_defi()
     ```
+
+* [Pro API] 💼 **/global/market_cap_chart**
+
+  _Query historical global market cap and volume data by number of days away from now)_
+  ```python
+  cg.get_global_market_cap_chart()
+  ```
+
 </details>
 
 <details><summary>companies (beta)</summary>
 <p>
 
-  - **/companies/public_treasury/{coin_id}** (Get public companies data)
+* **/companies/public_treasury/{coin_id}** 
+  
+   _Query public companies’ bitcoin or ethereum holdings_
     ```python
     cg.get_companies_public_treasury_by_coin_id()
     ```
