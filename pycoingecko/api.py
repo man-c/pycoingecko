@@ -153,7 +153,6 @@ class CoinGeckoAPI:
         kwargs['vs_currency'] = vs_currency
 
         api_url = '{0}coins/top_gainers_losers'.format(self.api_base_url)
-        # api_url = self.__api_url_params(api_url, kwargs)
 
         return self.__request(api_url, kwargs)
 
@@ -622,7 +621,7 @@ class CoinGeckoAPI:
         return self.__request(api_url, kwargs)
 
     @func_args_preprocessing
-    def get_nfts_tickers(self, id, **kwargs):
+    def get_nfts_tickers_by_id(self, id, **kwargs):
         """This endpoint allows you to query the latest floor price and 24h volume of a NFT collection, on each NFT marketplace, e.g. OpenSea and LooksRare"""
 
         api_url = '{0}nfts/{1}/tickers'.format(self.api_base_url, id)
