@@ -2,7 +2,7 @@
 [![PyPi Version](https://img.shields.io/pypi/v/pycoingecko.svg)](https://pypi.python.org/pypi/pycoingecko/)
 ![GitHub](https://img.shields.io/github/license/man-c/pycoingecko)
 
-Python3 wrapper around the [CoinGecko](https://www.coingecko.com/) API (V3), both Public and Pro API:
+Python3 wrapper around the [CoinGecko](https://www.coingecko.com/) API (V3) 🦎<br> Supports both Public and Pro API:
  * [Public API v3.0.1](https://docs.coingecko.com/v3.0.1/reference/introduction)
  * [Pro API v3.1.1](https://docs.coingecko.com/v3.1.1/reference/introduction)
 
