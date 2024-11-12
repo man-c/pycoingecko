@@ -72,7 +72,9 @@ https://www.coingecko.com/en/api/documentation
 <details><summary>ping</summary>
 <p>
 
-* **/ping** (Check API server status)
+* **/ping** 
+  
+   _Check API server status_
   ```python
   cg.ping()
   ```
@@ -81,7 +83,9 @@ https://www.coingecko.com/en/api/documentation
 <details><summary>key</summary>
 <p>
 
-* [Pro API] 💼 **/key** (Monitor your account's API usage, including rate limits, monthly total credits, remaining credits, and more)
+* [Pro API] 💼 **/key**  
+  
+   _Monitor your account's API usage, including rate limits, monthly total credits, remaining credits, and more_
   ```python
   cg.key()
   ```
@@ -90,15 +94,21 @@ https://www.coingecko.com/en/api/documentation
 <details><summary>simple</summary>
 <p>
 
-* **/simple/price** (Get the current price of any cryptocurrencies in any other supported currencies that you need)
+* **/simple/price** 
+  
+   _Get the current price of any cryptocurrencies in any other supported currencies that you need_
   ```python
   cg.get_price()
   ```
-* **/simple/token_price/{id}** (Get current price of tokens (using contract addresses) for a given platform in any other currency that you need)
+* **/simple/token_price/{id}** 
+  
+   _Get current price of tokens (using contract addresses) for a given platform in any other currency that you need_
   ```python
   cg.get_token_price()
   ```
-* **/simple/supported_vs_currencies** (Get list of supported_vs_currencies)
+* **/simple/supported_vs_currencies** 
+  
+   _Get list of supported_vs_currencies_
   ```python
   cg.get_supported_vs_currencies()
   ```
@@ -107,42 +117,60 @@ https://www.coingecko.com/en/api/documentation
 <details><summary>coins</summary>
 <p>
 
-* **/coins/list** (List all supported coins id, name and symbol (no pagination required))
+* **/coins/list** 
+  
+   _List all supported coins id, name and symbol (no pagination required)_
   ```python
   cg.get_coins_list()
   ```
 
-* [Pro API] 💼 **/coins/top_gainers_losers** (Query the top 30 coins with largest price gain and loss by a specific time duration)
+* [Pro API] 💼 **/coins/top_gainers_losers**  
+  
+   _Query the top 30 coins with largest price gain and loss by a specific time duration_
   ```python
   cg.get_coin_top_gainers_losers()
   ```
 
-* [Pro API] 💼 **/coins/list/new** (Query the latest 200 coins that recently listed on CoinGecko)
+* [Pro API] 💼 **/coins/list/new**  
+  
+   _Query the latest 200 coins that recently listed on CoinGecko_
   ```python
   cg.get_coins_list_new()
   ```
 
-* **/coins/markets** (List all supported coins price, market cap, volume, and market related data)
+* **/coins/markets**  
+  
+   _List all supported coins price, market cap, volume, and market related data_
   ```python 
   cg.get_coins_markets()
   ```
-* **/coins/{id}** (Get current data (name, price, market, ... including exchange tickers) for a coin)
+* **/coins/{id}**  
+  
+   _Get current data (name, price, market, ... including exchange tickers) for a coin_
   ```python 
   cg.get_coin_by_id()
   ```
-* **/coins/{id}/tickers** (Get coin tickers (paginated to 100 items))
+* **/coins/{id}/tickers**  
+  
+   _Get coin tickers (paginated to 100 items)_
   ```python 
   cg.get_coin_ticker_by_id()
   ```
-* **/coins/{id}/history** (Get historical data (name, price, market, stats) at a given date for a coin)
+* **/coins/{id}/history**  
+  
+   _Get historical data (name, price, market, stats) at a given date for a coin_
   ```python 
   cg.get_coin_history_by_id()
   ```
-* **/coins/{id}/market_chart** (Get historical market data include price, market cap, and 24h volume (granularity auto))
+* **/coins/{id}/market_chart**  
+  
+   _Get historical market data include price, market cap, and 24h volume (granularity auto)_
   ```python 
   cg.get_coin_market_chart_by_id()
   ```
-* **/coins/{id}/market_chart/range** (Get historical market data include price, market cap, and 24h volume within a range of timestamp (granularity auto))
+* **/coins/{id}/market_chart/range**  
+  
+   _Get historical market data include price, market cap, and 24h volume within a range of timestamp (granularity auto)_
   ```python 
   cg.get_coin_market_chart_range_by_id()
   ```
@@ -154,32 +182,44 @@ https://www.coingecko.com/en/api/documentation
 [//]: # (  cg.get_coin_status_updates_by_id&#40;&#41;)
 
 [//]: # (  ```)
-* **/coins/{id}/ohlc** (Get the OHLC chart (Open, High, Low, Close) of a coin based on particular coin id)
+* **/coins/{id}/ohlc**  
+  
+   _Get the OHLC chart (Open, High, Low, Close) of a coin based on particular coin id_
   ```python
   cg.get_coin_ohlc_by_id()
   ```
 
-* [Pro API] 💼 **/coins/{id}/ohlc/range** (Get the OHLC chart (Open, High, Low, Close) of a coin within a range of timestamp based on particular coin id)
+* [Pro API] 💼 **/coins/{id}/ohlc/range**  
+  
+   _Get the OHLC chart (Open, High, Low, Close) of a coin within a range of timestamp based on particular coin id_
   ```python
   cg.get_coin_ohlc_by_id_range()
   ```
 
-* [Pro API] 👑 **/coins/{id}/circulating_supply_chart** (Query historical circulating supply of a coin by number of days away from now based on provided coin id)
+* [Pro API] 👑 **/coins/{id}/circulating_supply_chart**  
+  
+   _Query historical circulating supply of a coin by number of days away from now based on provided coin id_
   ```python
   cg.get_coin_circulating_supply_chart()
   ```
 
-* [Pro API] 👑 **/coins/{id}/circulating_supply_chart/range** (Query historical circulating supply of a coin, within a range of timestamp based on the provided coin id)
+* [Pro API] 👑 **/coins/{id}/circulating_supply_chart/range**  
+  
+   _Query historical circulating supply of a coin, within a range of timestamp based on the provided coin id_
   ```python
   cg.get_coin_circulating_supply_chart_range()
   ```
 
-* [Pro API] 👑 **/coins/{id}/total_supply_chart** (Query historical total supply of a coin by number of days away from now based on provided coin id)
+* [Pro API] 👑 **/coins/{id}/total_supply_chart**  
+  
+   _Query historical total supply of a coin by number of days away from now based on provided coin id_
   ```python
   cg.get_coin_total_supply_chart()
   ```
 
-* [Pro API] 👑 **/coins/{id}/total_supply_chart/range** (Query historical total supply of a coin, within a range of timestamp based on the provided coin id)
+* [Pro API] 👑 **/coins/{id}/total_supply_chart/range**  
+  
+   _Query historical total supply of a coin, within a range of timestamp based on the provided coin id_
   ```python
   cg.get_coin_total_supply_chart_range()
   ```
@@ -190,15 +230,21 @@ https://www.coingecko.com/en/api/documentation
 <details><summary>contract</summary>
 <p>
 
-* **/coins/{id}/contract/{contract_address}** (Get coin info from contract address)
+* **/coins/{id}/contract/{contract_address}**  
+  
+   _Get coin info from contract address_
   ```python
   cg.get_coin_info_from_contract_address_by_id()
   ```
-* **/coins/{id}/contract/{contract_address}/market_chart/** (Get historical market data include price, market cap, and 24h volume (granularity auto) from a contract address)
+* **/coins/{id}/contract/{contract_address}/market_chart/**  
+  
+   _Get historical market data include price, market cap, and 24h volume (granularity auto) from a contract address_
   ```python
   cg.get_coin_market_chart_from_contract_address_by_id()
   ```
-* **/coins/{id}/contract/{contract_address}/market_chart/range** (Get historical market data include price, market cap, and 24h volume within a range of timestamp (granularity auto) from a contract address)
+* **/coins/{id}/contract/{contract_address}/market_chart/range**  
+  
+   _Get historical market data include price, market cap, and 24h volume within a range of timestamp (granularity auto) from a contract address_
   ```python
   cg.get_coin_market_chart_range_from_contract_address_by_id()
   ```
@@ -207,12 +253,16 @@ https://www.coingecko.com/en/api/documentation
 <details><summary>asset_platforms</summary>
 <p>
 
-* **/asset_platforms** (List all asset platforms (Blockchain networks))
+* **/asset_platforms**  
+  
+   _List all asset platforms (Blockchain networks)_
   ```python
   cg.get_asset_platforms()
   ```
 
-* [Pro API] 👑 **/token_lists/{asset_platform_id}/all.json** (Get full list of tokens of a blockchain network (asset platform) that is supported by Ethereum token list standard)
+* [Pro API] 👑 **/token_lists/{asset_platform_id}/all.json**  
+  
+   _Get full list of tokens of a blockchain network (asset platform) that is supported by Ethereum token list standard_
   ```python
   cg.get_asset_platform_by_id()
   ```
@@ -222,11 +272,15 @@ https://www.coingecko.com/en/api/documentation
 <details><summary>categories</summary>
 <p>
 
-* **/coins/categories/list** (List all categories)
+* **/coins/categories/list**  
+  
+   _List all categories_
   ```python
   cg.get_coins_categories_list()
   ```
-* **coins/categories** (List all categories with market data)
+* **coins/categories**  
+  
+   _List all categories with market data_
   ```python
   cg.get_coins_categories()
   ```
@@ -235,19 +289,27 @@ https://www.coingecko.com/en/api/documentation
 <details><summary>exchanges</summary>
 <p>
 
-* **/exchanges** (List all exchanges)
+* **/exchanges**  
+  
+   _List all exchanges_
   ```python
   cg.get_exchanges_list()
   ```
-* **/exchanges/list** (List all supported markets id and name (no pagination required))
+* **/exchanges/list**  
+  
+   _List all supported markets id and name (no pagination required)_
   ```python
   cg.get_exchanges_id_name_list()
   ```
-* **/exchanges/{id}** (Get exchange volume in BTC and top 100 tickers only)
+* **/exchanges/{id}**  
+  
+   _Get exchange volume in BTC and top 100 tickers only_
   ```python
   cg.get_exchanges_by_id()
   ```
-* **/exchanges/{id}/tickers** (Get exchange tickers (paginated, 100 tickers per page))
+* **/exchanges/{id}/tickers**  
+  
+   _Get exchange tickers (paginated, 100 tickers per page)_
   ```python
   cg.get_exchanges_tickers_by_id()
   ```
@@ -259,12 +321,16 @@ https://www.coingecko.com/en/api/documentation
 [//]: # (  cg.get_exchanges_status_updates_by_id&#40;&#41;)
 
 [//]: # (  ```)
-* **/exchanges/{id}/volume_chart** (Get volume_chart data for a given exchange)
+* **/exchanges/{id}/volume_chart**  
+  
+   _Get volume_chart data for a given exchange_
   ```python
   cg.get_exchanges_volume_chart_by_id()
   ```
 
-* [Pro API] 💼 **/exchanges/{id}/volume_chart/range** (Query the historical volume chart data in BTC by specifying date range in UNIX based on exchange’s id)
+* [Pro API] 💼 **/exchanges/{id}/volume_chart/range**  
+  
+   _Query the historical volume chart data in BTC by specifying date range in UNIX based on exchange’s id_
   ```python
   cg.get_exchanges_volume_chart_by_id_within_time_range()
   ```  
@@ -297,15 +363,21 @@ https://www.coingecko.com/en/api/documentation
 <details><summary>indexes</summary>
 <p>
 
-* **/indexes** (List all market indexes)
+* **/indexes**  
+  
+   _List all market indexes_
 ```python
 cg.get_indexes()
 ```
-* **/indexes/{market_id}/{id}** (Get market index by market id and index id)
+* **/indexes/{market_id}/{id}**  
+  
+   _Get market index by market id and index id_
 ```python
 cg.get_indexes_by_market_id_and_index_id()
 ```
-* **/indexes/list** (List market indexes id and name)
+* **/indexes/list**  
+  
+   _List market indexes id and name_
 ```python
 cg.get_indexes_list()
 ```
@@ -314,19 +386,27 @@ cg.get_indexes_list()
 <details><summary>derivatives</summary>
 <p>
 
-* **/derivatives** (List all derivative tickers)
+* **/derivatives**  
+  
+   _List all derivative tickers_
   ```python
   cg.get_derivatives()
   ```
-* **/derivatives/exchanges** (List all derivative exchanges)
+* **/derivatives/exchanges**  
+  
+   _List all derivative exchanges_
   ```python
   cg.get_derivatives_exchanges()
   ```
-* **/derivatives/exchanges/{id}** (Show derivative exchange data)
+* **/derivatives/exchanges/{id}** 
+  
+   _Show derivative exchange data_
   ```python
   cg.get_derivatives_exchanges_by_id()
   ```
-* **/derivatives/exchanges/list** (List all derivative exchanges name and identifier)
+* **/derivatives/exchanges/list** 
+  
+   _List all derivative exchanges name and identifier_
   ```python
   cg.get_derivatives_exchanges_list()
   ```
@@ -335,35 +415,49 @@ cg.get_indexes_list()
 <details><summary>nfts (beta)</summary>
 <p>
 
-* **/nfts/list** (List all supported NFT ids, paginated by 100 items per page, paginated to 100 items)
+* **/nfts/list** 
+  
+   _List all supported NFT ids, paginated by 100 items per page, paginated to 100 items_
   ```python
   cg.get_nfts_list()
   ```
-* **/nfts/{id}** (Get current data (name, price_floor, volume_24h ...) for an NFT collection. native_currency (string) is only a representative of the currency.)
+* **/nfts/{id}** 
+  
+   _Get current data (name, price_floor, volume_24h ...) for an NFT collection. native_currency (string) is only a representative of the currency_
   ```python
   cg.get_nfts_by_id()
   ```
-* **/nfts/{asset_platform_id}/contract/{contract_address}** (Get current data (name, price_floor, volume_24h ...) for an NFT collection. native_currency (string) is only a representative of the currency)
+* **/nfts/{asset_platform_id}/contract/{contract_address}** 
+  
+   _Get current data (name, price_floor, volume_24h ...) for an NFT collection. native_currency (string) is only a representative of the currency_
   ```python
   cg.get_nfts_collection_by_asset_platform_id_and_contract_address()
   ```
 
-* [Pro API] 💼 **/nfts/markets** (Query all the supported NFT collections with floor price, market cap, volume and market related data on CoinGecko)
+* [Pro API] 💼 **/nfts/markets** 
+  
+   _Query all the supported NFT collections with floor price, market cap, volume and market related data on CoinGecko_
   ```python
   cg.get_nfts_markets()
   ```
 
-* [Pro API] 💼 **/nfts/{id}/market_chart** (Query historical market data of a NFT collection, including floor price, market cap, and 24h volume, by number of days away from now)
+* [Pro API] 💼 **/nfts/{id}/market_chart** 
+  
+   _Query historical market data of a NFT collection, including floor price, market cap, and 24h volume, by number of days away from now_
   ```python
   cg.get_nfts_market_chart_by_id()
   ```
 
-* [Pro API] 💼 **/nfts/{asset_platform_id}/contract/{contract_address}/market_chart** (Query historical market data of a NFT collection, including floor price, market cap, and 24h volume, by number of days away from now based on the provided contract address)
+* [Pro API] 💼 **/nfts/{asset_platform_id}/contract/{contract_address}/market_chart** 
+  
+   _Query historical market data of a NFT collection, including floor price, market cap, and 24h volume, by number of days away from now based on the provided contract address_
   ```python
   cg.get_ntfs_market_chart_by_asset_platform_id_and_contract_address()
   ```
 
-* [Pro API] 💼 **/nfts/{id}/tickers** (Query the latest floor price and 24h volume of a NFT collection, on each NFT marketplace, e.g. OpenSea and LooksRare)
+* [Pro API] 💼 **/nfts/{id}/tickers** 
+  
+   _Query the latest floor price and 24h volume of a NFT collection, on each NFT marketplace, e.g. OpenSea and LooksRare_
   ```python
   cg.get_nfts_tickers_by_id()
   ```
@@ -419,7 +513,9 @@ cg.get_indexes_list()
 <details><summary>exchange_rates</summary>
 <p>
 
-* **/exchange_rates** (Get BTC-to-Currency exchange rates)
+* **/exchange_rates** 
+  
+   _Get BTC-to-Currency exchange rates_
   ```python
   cg.get_exchange_rates()
   ```
@@ -428,7 +524,9 @@ cg.get_indexes_list()
 <details><summary>search</summary>
 <p>
 
-* **/search** (Search for coins, categories and markets on CoinGecko)
+* **/search** 
+  
+   _Search for coins, categories and markets on CoinGecko_
   ```python
   cg.search()
   ```
@@ -437,7 +535,9 @@ cg.get_indexes_list()
 <details><summary>trending</summary>
 <p>
 
-* **/search/trending** (Get trending search coins (Top-7) on CoinGecko in the last 24 hours)
+* **/search/trending** 
+  
+   _Get trending search coins (Top-7) on CoinGecko in the last 24 hours_
   ```python
   cg.get_search_trending()
   ```
@@ -446,7 +546,9 @@ cg.get_indexes_list()
 <details><summary>global</summary>
 <p>
 
-* **/global** (Get cryptocurrency global data)
+* **/global** 
+  
+   _Get cryptocurrency global data_
     ```python
     cg.get_global()
     ```
