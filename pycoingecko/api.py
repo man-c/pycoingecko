@@ -13,17 +13,17 @@ class CoinGeckoAPI:
 
     def __init__(self, api_key: str = '', retries=5, demo_api_key: str = ''):
 
-        self.key_param = None
+        self.extra_params = None
         # self.headers = None
         if api_key:
             self.api_base_url = self.__PRO_API_URL_BASE
-            self.key_param = {'x_cg_pro_api_key': api_key}
+            self.extra_params = {'x_cg_pro_api_key': api_key}
             # self.headers = {"accept": "application/json",
             #                 "x-cg-pro-api-key": api_key}
         else:
             self.api_base_url = self.__API_URL_BASE
             if demo_api_key:
-                self.key_param = {'x_cg_demo_api_key': demo_api_key}
+                self.extra_params = {'x_cg_demo_api_key': demo_api_key}
                 # self.headers = {"accept": "application/json",
                 #                 "x-cg-demo-api-key": demo_api_key}
 
@@ -33,15 +33,15 @@ class CoinGeckoAPI:
         retries = Retry(total=retries, backoff_factor=0.5, status_forcelist=[502, 503, 504])
         self.session.mount('https://', HTTPAdapter(max_retries=retries))
 
-    # def __request(self, url, params=None):
+        # self.session.headers = self.headers
+
     def __request(self, url, params):
         # if using pro or demo version of CoinGecko with api key, inject key in every call
-        if self.key_param is not None:
-            params.update(self.key_param)
+        if self.extra_params is not None:
+            params.update(self.extra_params)
 
         try:
             response = self.session.get(url, params=params, timeout=self.request_timeout)
-            # print(response.url)
         except requests.exceptions.RequestException:
             raise
 
@@ -91,7 +91,7 @@ class CoinGeckoAPI:
 
     # ---------- KEY ----------#
     def key(self, **kwargs):
-        """Check API server status"""
+        """Monitor your account's API usage, including rate limits, monthly total credits, remaining credits, and more"""
 
         api_url = '{0}key'.format(self.api_base_url)
         # api_url = self.__api_url_params(api_url, kwargs)
