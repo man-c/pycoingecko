@@ -2,7 +2,9 @@
 [![PyPi Version](https://img.shields.io/pypi/v/pycoingecko.svg)](https://pypi.python.org/pypi/pycoingecko/)
 ![GitHub](https://img.shields.io/github/license/man-c/pycoingecko)
 
-Python3 wrapper around the [CoinGecko](https://www.coingecko.com/) API (V3)
+Python3 wrapper around the [CoinGecko](https://www.coingecko.com/) API (V3), both Public and Pro API:
+ * [Public API v3.0.1](https://docs.coingecko.com/v3.0.1/reference/introduction)
+ * [Pro API v3.1.1](https://docs.coingecko.com/v3.1.1/reference/introduction)
 
 ### Installation
 PyPI
@@ -18,17 +20,25 @@ python3 setup.py install
 
 ### Usage
 
-For **free API**:
-```python
-from pycoingecko import CoinGeckoAPI
-cg = CoinGeckoAPI()
-```
+For free **Public API**:
 
-For users with **Pro API** Key:
-```python
-from pycoingecko import CoinGeckoAPI
-cg = CoinGeckoAPI(api_key='YOUR_API_KEY')
-```
+ * without any demo api key (x-cg-demo-api-key):
+    ```python
+    from pycoingecko import CoinGeckoAPI
+    cg = CoinGeckoAPI()
+    ```
+ * 🔑 with a <ins>demo api key</ins>:
+    ```python
+    from pycoingecko import CoinGeckoAPI
+    cg = CoinGeckoAPI(demo_api_key='YOUR_DEMO_API_KEY')
+    ```
+
+For **Pro API**:
+ * 🔑 with a <ins>pro api key</ins>:
+    ```python
+    from pycoingecko import CoinGeckoAPI
+    cg = CoinGeckoAPI(api_key='YOUR_PRO_API_KEY')
+    ```
 
 ### Examples
 The required parameters for each endpoint are defined as required (mandatory) parameters for the corresponding functions.\
@@ -67,7 +77,7 @@ Usage examples:
 ### API documentation
 https://www.coingecko.com/en/api/documentation
 
-### Endpoints included
+### 📡 Endpoints included
 > :warning: **Endpoints documentation**: To make sure that you are using properly each endpoint you should check the [API documentation](https://www.coingecko.com/en/api/documentation). Return behaviour and parameters of the endpoints, such as *pagination*, might have changed. <br> Any **optional parameters** defined in CoinGecko API doc can be passed as function parameters using same parameters names with the API *(see Examples above)*.
 <details><summary>ping</summary>
 <p>
