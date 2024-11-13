@@ -1,6 +1,10 @@
+from functools import wraps
+
+
 def func_args_preprocessing(func):
     """Return function that converts list input arguments to comma-separated strings"""
 
+    @wraps(func)
     def input_args(*args, **kwargs):
 
         # check in **kwargs for lists and booleans

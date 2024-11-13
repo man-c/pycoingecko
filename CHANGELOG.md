@@ -1,4 +1,10 @@
 
+3.2.0 / 2024-11-13
+==================
+
+  * support both public (with or without demo_api_key) and pro (with pro api key) api in requests
+  * added new methods in coins, asset_platforms, exchanges, nfts, global
+
 3.1.0 / 2022-10-26
 ==================
 
@@ -9,14 +15,14 @@
 ==================
 
   * removed deprecated endpoints (status_updates, finance and events):
-    * /coins/{id}/status_updates -> cg.get_coin_status_updates_by_id()
-    * /exchanges/{id}/status_updates -> cg.get_exchanges_status_updates_by_id()
-    * /finance_platforms -> cg.get_finance_platforms()
-    * /finance_products -> cg.get_finance_products()
-    * /status_updates -> cg.get_status_updates()
-    * /events -> cg.get_events()
-    * /events/countries -> cg.get_events_countries()
-    * /events/types -> cg.get_events_types()
+  * /coins/{id}/status_updates -> cg.get_coin_status_updates_by_id()
+  * /exchanges/{id}/status_updates -> cg.get_exchanges_status_updates_by_id()
+  * /finance_platforms -> cg.get_finance_platforms()
+  * /finance_products -> cg.get_finance_products()
+  * /status_updates -> cg.get_status_updates()
+  * /events -> cg.get_events()
+  * /events/countries -> cg.get_events_countries()
+  * /events/types -> cg.get_events_types()
   * removed deprecated api_base_url param from CoinGeckoAPI init
 
 2.3.0 / 2022-08-30
